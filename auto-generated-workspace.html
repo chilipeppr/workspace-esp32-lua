@@ -119,10 +119,14 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
             
         }, 
         /**
-         * Returns the billboard HTML, CSS, and Javascript for this Workspace.
+         * Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
+         * is used by the home page, the workspace picker, and the fork pulldown to show a
+         * consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.
          */
         billboard: function() {
-            
+            var el = $('#com-chilipeppr-workspace-terminal-billboard');
+            el.removeClass("hidden");
+            return el;
         },
         /**
          * Listen to window resize event.
