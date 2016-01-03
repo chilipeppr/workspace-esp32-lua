@@ -13,7 +13,7 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
          */
         id: "com-chilipeppr-workspace-terminal", // Make the id the same as the cpdefine id
         name: "Workspace / Terminal", // The descriptive name of your widget.
-        desc: "A terminal session with the host running SPJS. As of version 1.87 of SPJS you can send/receive basic terminal commands to host operating system. This widget is a front-end UI for the terminal from ChiliPeppr.",
+        desc: "A new workspace if you just want to use the Terminal on its own.",
         url: "(auto fill by runme.js)", // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "(auto fill by runme.js)", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
         githuburl: "(auto fill by runme.js)", // The backing github repo
