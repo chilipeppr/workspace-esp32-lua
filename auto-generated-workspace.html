@@ -67,8 +67,10 @@
 /* global cpdefine chilipeppr cprequire */
 cprequire_test(["inline:com-chilipeppr-workspace-terminal"], function(termWs) {
 
+    console.log("initting workspace");
     termWs.init();
-    
+    $('title').html("Terminal Workspace");
+
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
@@ -108,6 +110,8 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
                     // if we get here, we can init the Terminal Widget
                     that.widgetTerminal.init();
                     that.widgetTerminal.resize();
+                    
+                    that.setupResize();
 
                 })
                 
@@ -119,6 +123,18 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
          */
         billboard: function() {
             
+        },
+        /**
+         * Listen to window resize event.
+         */
+        setupResize: function() {
+            $(window).on('resize', this.onResize.bind(this));
+        },
+        /**
+         * When browser window resizes, forcibly resize the Terminal window
+         */
+        onResize: function() {
+            this.widgetTerminal.resize();    
         },
         /**
          * Load the Terminal widget via chilipeppr.load()
@@ -182,6 +198,8 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
 
 <body>
 
+<p>&nbsp;</p>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
@@ -193,22 +211,25 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
         </div>
     </div>
 
-    <div id="com-chilipeppr-workspace-terminal-billboard" xclass="hidden">
+    <div id="com-chilipeppr-workspace-terminal-billboard" class="hidden">
         <div class="billboard-content">
-            <h4 class="billboard-title" style="">TinyG Workspace</h4>
+            <h4 class="billboard-title" style="">Terminal Workspace</h4>
 
             <p class="billboard-url" style=""><a href="http://chilipeppr.com/terminal">chilipeppr.com/terminal</a>
 
             </p>
             <div class="billboard-imgcontain" style="">
                 <a href="http://chilipeppr.com/terminal">
-                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-terminal/raw/master/screenshot.png')" />
+                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-terminal/raw/master/billboard.png')" />
                 </a>
-                <div class="billboard-stats2"/>
+                <div class="billboard-stats2">
+                </div>
 
             </div>
             <p class="billboard-desc">
-                This workspace lets you interact with the command line of the host running SPJS.
+                This workspace lets you interact with the command line of the host running the Serial 
+                Port JSON Server. Useful for interacting with your host hardware like the Raspberry Pi
+                from Javascript.
             </p>
         </div>
     </div>

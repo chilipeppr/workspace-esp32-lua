@@ -1,8 +1,10 @@
 /* global cpdefine chilipeppr cprequire */
 cprequire_test(["inline:com-chilipeppr-workspace-terminal"], function(termWs) {
 
+    console.log("initting workspace");
     termWs.init();
-    
+    $('title').html("Terminal Workspace");
+
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
@@ -42,6 +44,8 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
                     // if we get here, we can init the Terminal Widget
                     that.widgetTerminal.init();
                     that.widgetTerminal.resize();
+                    
+                    that.setupResize();
 
                 })
                 
@@ -53,6 +57,18 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
          */
         billboard: function() {
             
+        },
+        /**
+         * Listen to window resize event.
+         */
+        setupResize: function() {
+            $(window).on('resize', this.onResize.bind(this));
+        },
+        /**
+         * When browser window resizes, forcibly resize the Terminal window
+         */
+        onResize: function() {
+            this.widgetTerminal.resize();    
         },
         /**
          * Load the Terminal widget via chilipeppr.load()
