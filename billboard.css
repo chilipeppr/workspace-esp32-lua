@@ -1,18 +1,16 @@
-/* Workspace CSS */
-
-.billboard-content {
+.com-chilipeppr-ws-billboard-content {
     padding: 6px 20px;
 }
-.billboard-title {
+.com-chilipeppr-ws-billboard-title {
     margin-bottom:6px;
 }
-.billboard-url {
+.com-chilipeppr-ws-billboard-url {
     /* font-size: 9px; */
     padding-top:0px;
     margin-bottom:6px;
     font-size:12px;
 }
-.billboard-img {
+.com-chilipeppr-ws-billboard-img {
     border:0px solid red;
     border-radius: 5px;
     position: relative;
@@ -21,22 +19,18 @@
     background-position: center;
     background-size: cover;
 }
-.billboard-imgcontain {
-    border:0px solid red; 
-    position: relative;
-}
-.billboard-stats {
+.com-chilipeppr-ws-billboard-stats {
     position: absolute;
     top: 4px;
     left: 10px;
 }
-.billboard-desc {
+.com-chilipeppr-ws-billboard-desc {
     /* font-size:11px; */
 }
-.billboard-detail-title {
+.com-chilipeppr-ws-billboard-detail-title {
     font-weight: bold;
 }
-.billboard-stats2 {
+.com-chilipeppr-ws-billboard-stats2 {
     position: absolute;
     bottom: 0px;
     left: 0px;
