@@ -35,6 +35,8 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
             
             var that = this;
 
+            $('#com-chilipeppr-workspace-terminal').removeClass("hidden");
+
             // Load the terminal widget
             this.loadTerminalWidget(function() {
                 
@@ -46,7 +48,6 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
                     that.widgetTerminal.resize();
                     
                     that.setupResize();
-
                 })
                 
             })
