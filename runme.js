@@ -782,7 +782,7 @@ var generateWidgetDocs = function() {
       
       <p>$pubsub-desc</p>
 
-      <h2>ChiliPeppr Widget Docs</h2>
+      <h2>ChiliPeppr Workspace Docs</h2>
 
       <p>The content below is auto generated as long as you follow the standard
       template for a ChiliPeppr widget from 
