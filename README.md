@@ -14,7 +14,7 @@ not conflict with other ChiliPeppr widgets.
 | ID                    | com-chilipeppr-workspace-terminal |
 | Name                  | Workspace / Terminal |
 | Description           | A new workspace if you just want to use the Terminal on its own. |
-| chilipeppr.load() URL | http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-widget.html |
+| chilipeppr.load() URL | http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html |
 | Edit URL              | http://ide.c9.io/chilipeppr/workspace-terminal |
 | Github URL            | http://github.com/chilipeppr/workspace-terminal |
 | Test URL              | https://preview.c9users.io/chilipeppr/workspace-terminal/widget.html |
@@ -33,7 +33,7 @@ $("body").append('<' + 'div id="myDivWorkspaceTerminal"><' + '/div>');
 
 chilipeppr.load(
   "#myDivWorkspaceTerminal",
-  "http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-widget.html",
+  "http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html",
   function() {
     // Callback after widget loaded into #myDivWorkspaceTerminal
     // Now use require.js to get reference to instantiated widget
@@ -132,7 +132,7 @@ The table below shows, in order, the methods and properties inside the widget/el
           </tr>
       </thead>
       <tbody>
-      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-terminal"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / Terminal"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A new workspace if you just want to use the Terminal on its own."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-widget.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-terminal-chilipeppr.c9users.io/widget.html"</td></tr><tr valign="top"><td>widgetTerminal</td><td>object</td><td>Contains reference to the Terminal widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Terminal widget and then the SPJS widget.</td></tr><tr valign="top"><td>loadTerminalWidget</td><td>function</td><td>function (callback) <br><br>Load the Terminal widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadSpjsWidget</td><td>function</td><td>function (callback) <br><br>Load the Serial Port JSON Server widget via chilipeppr.load()</td></tr>
+      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-terminal"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / Terminal"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A new workspace if you just want to use the Terminal on its own."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-terminal-chilipeppr.c9users.io/widget.html"</td></tr><tr valign="top"><td>widgetTerminal</td><td>object</td><td>Contains reference to the Terminal widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Terminal widget and then the SPJS widget.</td></tr><tr valign="top"><td>loadTerminalWidget</td><td>function</td><td>function (callback) <br><br>Load the Terminal widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadSpjsWidget</td><td>function</td><td>function (callback) <br><br>Load the Serial Port JSON Server widget via chilipeppr.load()</td></tr>
       </tbody>
   </table>
 

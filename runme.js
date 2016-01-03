@@ -38,11 +38,11 @@ http.createServer(function(req, res) {
     var htmlDocs = generateWidgetDocs();
     
     var notes = "";
-    notes += "<p>Click refresh to regenerate README.md, auto-generated-widget.html, and push updates to Github.</p>";
+    notes += "<p>Click refresh to regenerate README.md, " + fileAutoGeneratePath + ", and push updates to Github.</p>";
     generateWidgetReadme();
     notes += "<p>Generated a new README.md file...</p>";
     generateInlinedFile();
-    notes += "<p>Generated a new auto-generated-widget.html file...</p>";
+    notes += "<p>Generated a new " + fileAutoGeneratePath + " file...</p>";
     //pushToGithub();
     //pushToGithubSync();
     pushToGithubAsync();
@@ -1261,8 +1261,8 @@ var generateInlinedFile = function() {
   );
 
   // now write out the auto-gen file
-  fs.writeFileSync("auto-generated-widget.html", fileHtml);
-  console.log("Updated auto-generated-widget.html");
+  fs.writeFileSync(fileAutoGeneratePath, fileHtml);
+  console.log("Updated " + fileAutoGeneratePath );
 
 }
 
@@ -1293,7 +1293,7 @@ var getMainPage = function() {
     '';
 
   generateInlinedFile();
-  html += '<br><br>Just updated your auto-generated-widget.html file.';
+  html += '<br><br>Just updated your ' + fileAutoGeneratePath + ' file.';
     
   //pushToGithub();
   //html += '<br><br>Just pushed updates to your Github repo.';
@@ -1330,7 +1330,7 @@ var getGithubUrl = function(callback) {
   url = "http://github.com/" + url;
   
   var rawurl = url.replace(/\/github.com\//i, "/raw.githubusercontent.com/");
-  rawurl += '/master/auto-generated-widget.html';
+  rawurl += '/master/' + fileAutoGeneratePath;
   
   var ret = {
     url: url,
