@@ -166,8 +166,25 @@ var fileJsPath = "workspace.js"
 var fileCssPath = "workspace.css"
 var fileHtmlPath = "workspace.html"
 
+var widgetUrl = 'http://' +
+    process.env.C9_PROJECT + '-' + process.env.C9_USER +
+    '.c9users.io/widget.html';
+var testUrl = 'https://preview.c9users.io/' +
+    process.env.C9_USER + '/' +
+    process.env.C9_PROJECT + '/' + fileHtmlPath;
+var testUrlNoSsl = 'http://' + process.env.C9_PROJECT +
+    '-' + process.env.C9_USER + '.c9users.io/' + fileHtmlPath;
+var editUrl = 'http://ide.c9.io/' +
+    process.env.C9_USER + '/' +
+    process.env.C9_PROJECT;
+var github;
+
 var widgetSrc, widget, id, deps, cpdefine, requirejs, cprequire_test;
 var widgetDocs = {};
+
+var init = function() {
+    github = getGithubUrl();
+}
 
 var isEvaled = false;
 var evalWidgetJs = function() {
@@ -180,6 +197,7 @@ var evalWidgetJs = function() {
   widgetSrc = fs.readFileSync(fileJsPath)+'';
   
   // fill in some auto fill stuff
+  /*
   var widgetUrl = 'http://' +
     process.env.C9_PROJECT + '-' + process.env.C9_USER +
     '.c9users.io/widget.html';
@@ -187,6 +205,7 @@ var evalWidgetJs = function() {
     process.env.C9_USER + '/' +
     process.env.C9_PROJECT;
   var github = getGithubUrl();
+  */
 
   var reUrl = /(url\s*:\s*['"]?)\(auto fill by runme\.js\)/;
   //console.log("reUrl:", reUrl);
@@ -198,6 +217,7 @@ var evalWidgetJs = function() {
   // rewrite the javascript
   //fs.writeFileSync(fileJsPath, widgetSrc);
   
+  console.log("before we eval here is the src:", widgetSrc);
   eval(widgetSrc);
   //console.log("evaled the widget.js");
   //isEvaled = true;
@@ -537,6 +557,7 @@ will you build on top of it?
 
 `
 
+  /*
   var widgetUrl = 'http://' +
     process.env.C9_PROJECT + '-' + process.env.C9_USER +
     '.c9users.io/widget.html';
@@ -547,6 +568,7 @@ will you build on top of it?
     process.env.C9_USER + '/' +
     process.env.C9_PROJECT;
   var github = getGithubUrl();
+  */
 
   md = md.replace(/\$widget-id/g, widget.id);
   md = md.replace(/\$widget-name/g, widget.name);
@@ -973,6 +995,7 @@ var generateWidgetDocs = function() {
   </html>
 `;
 
+  /*
   var widgetUrl = 'http://' +
     process.env.C9_PROJECT + '-' + process.env.C9_USER +
     '.c9users.io/widget.html';
@@ -985,6 +1008,7 @@ var generateWidgetDocs = function() {
     process.env.C9_USER + '/' +
     process.env.C9_PROJECT;
   var github = getGithubUrl();
+  */
   
   html = html.replace(/\$pubsub-id/g, widget.id);
   html = html.replace(/\$pubsub-name/g, widget.name);
@@ -1341,3 +1365,5 @@ var getGithubUrl = function(callback) {
   return ret;
     
 }
+
+init();
