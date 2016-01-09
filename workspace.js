@@ -15,7 +15,15 @@ cpdefine("inline:com-chilipeppr-workspace-nodemcu", ["chilipeppr_ready"], functi
          */
         id: "com-chilipeppr-workspace-nodemcu", // Make the id the same as the cpdefine id
         name: "Workspace / NodeMCU", // The descriptive name of your widget.
-        desc: "A ChiliPeppr Workspace that lets you interact with the NodeMCU device.",
+        desc: `A ChiliPeppr Workspace that lets you interact with the NodeMCU device.
+        
+        The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge
+        like the way Arduinos have an USB FTDI adapter connected to a micro-controller. Secondly,
+        the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program
+        the device.
+        
+        This workspace gives you convenience methods for programming the NodeMCU device.
+        `,
         url: "(auto fill by runme.js)", // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "(auto fill by runme.js)", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
         githuburl: "(auto fill by runme.js)", // The backing github repo
