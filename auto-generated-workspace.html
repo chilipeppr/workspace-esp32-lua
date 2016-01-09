@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <title>Workspace / Terminal</title>
+    <title>Workspace / NodeMCU</title>
 
     <!-- ChiliPeppr is based on bootstrap CSS. -->
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -65,7 +65,7 @@
     <script type='text/javascript'>
     //<![CDATA[
 /* global cpdefine chilipeppr cprequire */
-cprequire_test(["inline:com-chilipeppr-workspace-terminal"], function(termWs) {
+cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(termWs) {
 
     console.log("initting workspace");
     termWs.init();
@@ -74,18 +74,18 @@ cprequire_test(["inline:com-chilipeppr-workspace-terminal"], function(termWs) {
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
-cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], function() {
+cpdefine("inline:com-chilipeppr-workspace-nodemcu", ["chilipeppr_ready"], function() {
     return {
         /**
          * The ID of the widget. You must define this and make it unique.
          */
-        id: "com-chilipeppr-workspace-terminal", // Make the id the same as the cpdefine id
-        name: "Workspace / Terminal", // The descriptive name of your widget.
-        desc: "A new workspace if you just want to use the Terminal on its own.",
-        url: "http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html", // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
-        fiddleurl: "http://ide.c9.io/chilipeppr/workspace-terminal", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
-        githuburl: "http://github.com/chilipeppr/workspace-terminal", // The backing github repo
-        testurl: "http://workspace-terminal-chilipeppr.c9users.io/widget.html", // The standalone working widget so can view it working by itself
+        id: "com-chilipeppr-workspace-nodemcu", // Make the id the same as the cpdefine id
+        name: "Workspace / NodeMCU", // The descriptive name of your widget.
+        desc: "A ChiliPeppr Workspace that lets you interact with the NodeMCU device.",
+        url: "http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html", // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
+        fiddleurl: "http://ide.c9.io/chilipeppr/workspace-nodemcu", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
+        githuburl: "http://github.com/chilipeppr/workspace-nodemcu", // The backing github repo
+        testurl: "http://workspace-nodemcu-chilipeppr.c9users.io/widget.html", // The standalone working widget so can view it working by itself
         /**
          * Contains reference to the Terminal widget object.
          */
@@ -101,7 +101,7 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
             
             var that = this;
 
-            $('#com-chilipeppr-workspace-terminal').removeClass("hidden");
+            $('#' + this.id).removeClass("hidden");
 
             // Load the terminal widget
             this.loadTerminalWidget(function() {
@@ -125,7 +125,7 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
          * consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.
          */
         billboard: function() {
-            var el = $('#com-chilipeppr-workspace-terminal-billboard');
+            var el = $('#' + this.id + '-billboard');
             el.removeClass("hidden");
             return el;
         },
@@ -144,7 +144,7 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
         /**
          * Load the Terminal widget via chilipeppr.load()
          */
-        loadTerminalWidget: function(callback) {
+        loadConsoleWidget: function(callback) {
             var that = this;
             chilipeppr.load(
                 "#terminalWidget",
@@ -203,13 +203,13 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
 
 <body>
 
-    <div id="com-chilipeppr-workspace-terminal" class="hidden">
+    <div id="com-chilipeppr-workspace-nodemcu" class="hidden">
         <p>&nbsp;</p>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-8">
-                    <div id="terminalWidget"></div>
+                    <div id="nodemcuWidget"></div>
                 </div>
                 <div class="col-md-4">
                     <div id="spjsWidget"></div>
@@ -218,16 +218,16 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
         </div>
     </div>
 
-    <div id="com-chilipeppr-workspace-terminal-billboard" class="hidden">
+    <div id="com-chilipeppr-workspace-nodemcu-billboard" class="hidden">
         <div class="billboard-content">
-            <h4 class="billboard-title" style="">Terminal Workspace</h4>
+            <h4 class="billboard-title" style="">NodeMCU Workspace</h4>
 
-            <p class="billboard-url" style=""><a href="http://chilipeppr.com/terminal">chilipeppr.com/terminal</a>
+            <p class="billboard-url" style=""><a href="http://chilipeppr.com/nodemcu">chilipeppr.com/nodemcu</a>
 
             </p>
             <div class="billboard-imgcontain" style="">
-                <a href="http://chilipeppr.com/terminal">
-                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-terminal/raw/master/billboard.png')" />
+                <a href="http://chilipeppr.com/nodemcu">
+                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-nodemcu/raw/master/billboard.png')" />
                 </a>
                 <div class="billboard-stats2">
                 </div>
@@ -238,3 +238,6 @@ cpdefine("inline:com-chilipeppr-workspace-terminal", ["chilipeppr_ready"], funct
             </p>
         </div>
     </div>
+    
+</body>
+</html>

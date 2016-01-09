@@ -1,9 +1,9 @@
-# com-chilipeppr-workspace-terminal
-A new workspace if you just want to use the Terminal on its own.
+# com-chilipeppr-workspace-nodemcu
+A ChiliPeppr Workspace that lets you interact with the NodeMCU device.
 
 ![alt text](screenshot.png "Screenshot")
 
-## ChiliPeppr Workspace / Terminal
+## ChiliPeppr Workspace / NodeMCU
 
 All ChiliPeppr widgets/elements are defined using cpdefine() which is a method
 that mimics require.js. Each defined object must have a unique ID so it does
@@ -11,13 +11,13 @@ not conflict with other ChiliPeppr widgets.
 
 | Item                  | Value           |
 | -------------         | ------------- | 
-| ID                    | com-chilipeppr-workspace-terminal |
-| Name                  | Workspace / Terminal |
-| Description           | A new workspace if you just want to use the Terminal on its own. |
-| chilipeppr.load() URL | http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html |
-| Edit URL              | http://ide.c9.io/chilipeppr/workspace-terminal |
-| Github URL            | http://github.com/chilipeppr/workspace-terminal |
-| Test URL              | https://preview.c9users.io/chilipeppr/workspace-terminal/workspace.html |
+| ID                    | com-chilipeppr-workspace-nodemcu |
+| Name                  | Workspace / NodeMCU |
+| Description           | A ChiliPeppr Workspace that lets you interact with the NodeMCU device. |
+| chilipeppr.load() URL | http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html |
+| Edit URL              | http://ide.c9.io/chilipeppr/workspace-nodemcu |
+| Github URL            | http://github.com/chilipeppr/workspace-nodemcu |
+| Test URL              | https://preview.c9users.io/chilipeppr/workspace-nodemcu/workspace.html |
 
 ## Example Code for chilipeppr.load() Statement
 
@@ -29,20 +29,20 @@ back the instance of it.
 
 ```javascript
 // Inject new div to contain widget or use an existing div with an ID
-$("body").append('<' + 'div id="myDivWorkspaceTerminal"><' + '/div>');
+$("body").append('<' + 'div id="myDivWorkspaceNodemcu"><' + '/div>');
 
 chilipeppr.load(
-  "#myDivWorkspaceTerminal",
-  "http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html",
+  "#myDivWorkspaceNodemcu",
+  "http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html",
   function() {
-    // Callback after widget loaded into #myDivWorkspaceTerminal
+    // Callback after widget loaded into #myDivWorkspaceNodemcu
     // Now use require.js to get reference to instantiated widget
     cprequire(
-      ["inline:com-chilipeppr-workspace-terminal"], // the id you gave your widget
-      function(myObjWorkspaceTerminal) {
+      ["inline:com-chilipeppr-workspace-nodemcu"], // the id you gave your widget
+      function(myObjWorkspaceNodemcu) {
         // Callback that is passed reference to the newly loaded widget
-        console.log("Workspace / Terminal just got loaded.", myObjWorkspaceTerminal);
-        myObjWorkspaceTerminal.init();
+        console.log("Workspace / NodeMCU just got loaded.", myObjWorkspaceNodemcu);
+        myObjWorkspaceNodemcu.init();
       }
     );
   }
@@ -132,9 +132,9 @@ The table below shows, in order, the methods and properties inside the widget/el
           </tr>
       </thead>
       <tbody>
-      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-terminal"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / Terminal"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A new workspace if you just want to use the Terminal on its own."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-terminal/master/auto-generated-workspace.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-terminal"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-terminal-chilipeppr.c9users.io/widget.html"</td></tr><tr valign="top"><td>widgetTerminal</td><td>object</td><td>Contains reference to the Terminal widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Terminal widget and then the SPJS widget.</td></tr><tr valign="top"><td>billboard</td><td>function</td><td>function () <br><br>Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
+      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-nodemcu"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / NodeMCU"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A ChiliPeppr Workspace that lets you interact with the NodeMCU device."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-nodemcu-chilipeppr.c9users.io/widget.html"</td></tr><tr valign="top"><td>widgetTerminal</td><td>object</td><td>Contains reference to the Terminal widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Terminal widget and then the SPJS widget.</td></tr><tr valign="top"><td>billboard</td><td>function</td><td>function () <br><br>Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
 is used by the home page, the workspace picker, and the fork pulldown to show a
-consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.</td></tr><tr valign="top"><td>setupResize</td><td>function</td><td>function () <br><br>Listen to window resize event.</td></tr><tr valign="top"><td>onResize</td><td>function</td><td>function () <br><br>When browser window resizes, forcibly resize the Terminal window</td></tr><tr valign="top"><td>loadTerminalWidget</td><td>function</td><td>function (callback) <br><br>Load the Terminal widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadSpjsWidget</td><td>function</td><td>function (callback) <br><br>Load the Serial Port JSON Server widget via chilipeppr.load()</td></tr>
+consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.</td></tr><tr valign="top"><td>setupResize</td><td>function</td><td>function () <br><br>Listen to window resize event.</td></tr><tr valign="top"><td>onResize</td><td>function</td><td>function () <br><br>When browser window resizes, forcibly resize the Terminal window</td></tr><tr valign="top"><td>loadConsoleWidget</td><td>function</td><td>function (callback) <br><br>Load the Terminal widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadSpjsWidget</td><td>function</td><td>function (callback) <br><br>Load the Serial Port JSON Server widget via chilipeppr.load()</td></tr>
       </tbody>
   </table>
 
