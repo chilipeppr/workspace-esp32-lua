@@ -15,9 +15,9 @@ cpdefine("inline:com-chilipeppr-workspace-nodemcu", ["chilipeppr_ready"], functi
          */
         id: "com-chilipeppr-workspace-nodemcu", // Make the id the same as the cpdefine id
         name: "Workspace / NodeMCU", // The descriptive name of your widget.
-        desc: `A ChiliPeppr Workspace that lets you interact with the NodeMCU device.
-The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge
-like the way Arduinos have an USB FTDI adapter connected to a micro-controller. Secondly,
+        desc: `A ChiliPeppr Workspace that lets you interact with the NodeMCU device. \
+The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge \
+like the way Arduinos have an USB FTDI adapter connected to a micro-controller. Secondly, \
 the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program
 the device.This workspace gives you convenience methods for programming the NodeMCU device.
 `,
