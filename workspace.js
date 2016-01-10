@@ -47,7 +47,7 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             this.loadConsoleWidget(function() {
 
                 console.log("console widget loaded, now lets load spjs");
-                
+
                 // now we can load the SPJS widget
                 that.loadSpjsWidget(function() {
 
@@ -58,8 +58,136 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                     that.setupResize();
                 })
 
-            })
+            });
 
+            this.loadFlashMsg();
+            setTimeout(this.loadWorkspaceMenu.bind(this), 100);
+            this.setupNodeMcuCommands();
+
+        },
+        /**
+         * Setup all the command buttons to do their thing.
+         */
+        setupNodeMcuCommands: function() {
+            var that = this;
+            setTimeout(function() {
+                console.log("doing btns");
+                $('#' + that.id + ' .nodemcu-commands .btn').each(function(index) {
+                    var el = $(this);
+                    var dataClick = el.data('click');
+                    console.log("btn el:", el, "data-click:", dataClick);
+                    if (that[dataClick]) {
+                        el.click(that[dataClick].bind(that));
+                        console.log("bound to ", that[dataClick]);
+                    }
+                });
+
+            }, 300);
+        },
+        onClickReset: function(evt) {
+            console.log("got onClickReset. evt:", evt);
+            this.send('node.restart()');
+        },
+        onClickHeap: function(evt) {
+            console.log("got onClickHeap. evt:", evt);
+            this.send('=node.heap()');
+        },
+        onClickChipId: function(evt) {
+            console.log("got onClickChipId. evt:", evt);
+            this.send('=node.chipid()');
+        },
+        onClickChipInfo: function(evt) {
+            console.log("got onClickChipInfo. evt:", evt);
+            this.send('=node.info()');
+        },
+        onClickFlashId: function(evt) {
+            console.log("got onClickFlashId. evt:", evt);
+            this.send('=node.flashid()');
+        },
+        onClickFsInfo: function(evt) {
+            console.log("got onClickFsInfo. evt:", evt);
+            this.send('r,u,t=file.fsinfo()\nprint("Total : " .. t .. " bytes\\r\\nUsed  : " .. u .. " bytes\\r\\nRemain: " .. r .. " bytes\\r\\n")\nr=nil u=nil t=nil');
+        },
+        onClickListFiles: function(evt) {
+            console.log("got onClickListFiles. evt:", evt);
+            this.send('l = file.list()\nfor k,v in pairs(l) do\nprint("name:" .. k .. ", size:" .. v)\nend\nl=nil');
+        },
+        onClickBlinkOld: function(evt) {
+            console.log("got onClickBlink. evt:", evt);
+            this.send(`lighton=0
+gpio.mode(4, gpio.OUTPUT)
+tmr.alarm(0,1000,1,function()
+    if lighton==0 then 
+        lighton=1 
+        gpio.write(4, gpio.LOW)
+        --print("light on")
+    else 
+        lighton=0 
+        gpio.write(4, gpio.HIGH)
+        --print("light off")
+    end 
+end)`);
+        },
+        onClickBlink: function(evt) {
+            console.log("got onClickBlink. evt:", evt);
+            this.send(`-- Config
+pin = 4            --> GPIO2
+value = gpio.LOW
+duration = 1000    --> 1 second
+-- Function toggles LED state
+function toggleLED ()
+    if value == gpio.LOW then
+        value = gpio.HIGH
+    else
+        value = gpio.LOW
+    end
+
+    gpio.write(pin, value)
+end
+-- Initialise the pin
+gpio.mode(pin, gpio.OUTPUT)
+gpio.write(pin, value)
+-- Create an interval
+tmr.alarm(0, duration, 1, toggleLED)`);
+        },
+        onClickReadVdd33: function(evt) {
+            console.log("got onClickReadVdd33. evt:", evt);
+            this.send(`v = adc.readvdd33() / 1000
+print(v)
+v=nil`);
+        },
+        onClickListAps: function(evt) {
+            console.log("got onClickListAps. evt:", evt);
+            this.send(`function listap(t)
+    for ssid,v in pairs(t) do
+        authmode, rssi, bssid, channel = 
+            string.match(v, "(%d),(-?%d+),(%x%x:%x%x:%x%x:%x%x:%x%x:%x%x),(%d+)")
+        print(ssid,authmode,rssi,bssid,channel)
+    end
+end
+      
+wifi.sta.getap(listap)`);
+        },
+        sendCtr: 0,
+        send: function(txt) {
+            var cmds = txt.split(/\n/g);
+            var ctr = 0;
+            var that = this;
+
+            for (var indx in cmds) {
+                setTimeout(function() {
+
+                    var cmd = cmds[ctr];
+
+                    chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {
+                        D: cmd + '\n',
+                        Id: "nodemcu-" + that.sendCtr++
+                    });
+
+                    ctr++;
+
+                }, 10 * indx);
+            }
         },
         /**
          * Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
@@ -126,9 +254,15 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                     cprequire(["inline:com-chilipeppr-widget-serialport"], function(spjs) {
                         //console.log("inside require of " + fm.id);
                         spjs.setSingleSelectMode();
-                        spjs.init();
+                        //spjs.init(null, "timed", 9600);
+                        spjs.init({
+                            isSingleSelectMode: true,
+                            defaultBuffer: "timed",
+                            defaultBaud: 9600,
+                            bufferEncouragementMsg: 'For your NodeMCU device please choose the "timed" buffer in the pulldown and a 9600 baud rate before connecting.'
+                        });
                         //spjs.showBody();
-                        //spjs.consoleToggle();
+                        spjs.consoleToggle();
 
                         that.widgetSpjs = spjs;
 
@@ -137,6 +271,45 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                     });
                 }
             );
+        },
+        /**
+         * Load Flash Module so we can show flash messages.
+         */
+        loadFlashMsg: function() {
+            chilipeppr.load("#com-chilipeppr-widget-flash-instance",
+                "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
+                function() {
+                    console.log("mycallback got called after loading flash msg module");
+                    cprequire(["inline:com-chilipeppr-elem-flashmsg"], function(fm) {
+                        //console.log("inside require of " + fm.id);
+                        fm.init();
+                    });
+                }
+            );
+        },
+        /**
+         * Load the workspace menu.
+         */
+        loadWorkspaceMenu: function() {
+            // Workspace Menu with Workspace Billboard
+            var that = this;
+            chilipeppr.load(
+                "http://fiddle.jshell.net/chilipeppr/zMbL9/show/light/",
+                function() {
+                    require(['inline:com-chilipeppr-elem-pubsubviewer'], function(pubsubviewer) {
+
+                        var el = $('#' + that.id + ' .com-chilipeppr-ws-menu .dropdown-menu-ws');
+                        console.log("got callback for attachto menu for workspace for nodemcu.. attaching to el:", el);
+
+                        pubsubviewer.attachTo(
+                            el,
+                            that,
+                            "Workspace"
+                        );
+                    });
+                }
+            );
         }
-    };
+    }
+
 });
