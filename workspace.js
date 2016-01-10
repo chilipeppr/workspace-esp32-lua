@@ -3,7 +3,7 @@ cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(termWs) {
 
     console.log("initting workspace");
     termWs.init();
-    $('title').html("Terminal Workspace");
+    $('title').html("Console Workspace");
 
 } /*end_test*/ );
 
@@ -27,15 +27,15 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
         githuburl: "(auto fill by runme.js)", // The backing github repo
         testurl: "(auto fill by runme.js)", // The standalone working widget so can view it working by itself
         /**
-         * Contains reference to the Terminal widget object.
+         * Contains reference to the Console widget object.
          */
-        widgetTerminal: null,
+        widgetConsole: null,
         /**
          * Contains reference to the Serial Port JSON Server object.
          */
         widgetSpjs: null,
         /**
-         * The workspace's init method. It loads the Terminal widget and then the SPJS widget.
+         * The workspace's init method. It loads the Console widget and then the SPJS widget.
          */
         init: function() {
 
@@ -43,15 +43,17 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
 
             $('#' + this.id).removeClass("hidden");
 
-            // Load the terminal widget
-            this.loadTerminalWidget(function() {
+            // Load the console widget
+            this.loadConsoleWidget(function() {
 
+                console.log("console widget loaded, now lets load spjs");
+                
                 // now we can load the SPJS widget
                 that.loadSpjsWidget(function() {
 
-                    // if we get here, we can init the Terminal Widget
-                    that.widgetTerminal.init();
-                    that.widgetTerminal.resize();
+                    // if we get here, we can init the Console Widget
+                    that.widgetConsole.init(true);
+                    //that.widgetConsole.resize();
 
                     that.setupResize();
                 })
@@ -76,28 +78,28 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             $(window).on('resize', this.onResize.bind(this));
         },
         /**
-         * When browser window resizes, forcibly resize the Terminal window
+         * When browser window resizes, forcibly resize the Console window
          */
         onResize: function() {
-            this.widgetTerminal.resize();
+            this.widgetConsole.resize();
         },
         /**
-         * Load the Terminal widget via chilipeppr.load()
+         * Load the Console widget via chilipeppr.load()
          */
         loadConsoleWidget: function(callback) {
             var that = this;
             chilipeppr.load(
-                "#terminalWidget",
-                "http://raw.githubusercontent.com/chilipeppr/widget-terminal/master/auto-generated-widget.html",
+                "#consoleWidget",
+                "http://fiddle.jshell.net/chilipeppr/rczajbx0/show/light/",
                 function() {
                     // Callback after widget loaded into #myDivWidgetInsertedInto
                     cprequire(
-                        ["inline:com-chilipeppr-widget-terminal"], // the id you gave your widget
+                        ["inline:com-chilipeppr-widget-spconsole"], // the id you gave your widget
                         function(mywidget) {
                             // Callback that is passed reference to your newly loaded widget
                             console.log("My widget just got loaded.", mywidget);
 
-                            that.widgetTerminal = mywidget;
+                            that.widgetConsole = mywidget;
 
                             // load spjs widget so we can test
                             //http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/
@@ -123,8 +125,10 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                     console.log("mycallback got called after loading spjs module");
                     cprequire(["inline:com-chilipeppr-widget-serialport"], function(spjs) {
                         //console.log("inside require of " + fm.id);
+                        spjs.setSingleSelectMode();
                         spjs.init();
-                        spjs.consoleToggle();
+                        //spjs.showBody();
+                        //spjs.consoleToggle();
 
                         that.widgetSpjs = spjs;
 
