@@ -1,8 +1,9 @@
 /* global cpdefine chilipeppr cprequire */
-cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(termWs) {
+cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(ws) {
 
     console.log("initting workspace");
-    termWs.init();
+    ws.init();
+    ws.loadFlashMsg();
     $('title').html("Console Workspace");
     $('body').css('padding', '10px');
 
@@ -67,7 +68,7 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
 
             this.loadLuaEditor();
 
-            this.loadFlashMsg();
+            //this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
             this.setupNodeMcuCommands();
 
