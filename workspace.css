@@ -4,6 +4,10 @@
     padding:10px 15px;
 }
 
+#com-chilipeppr-workspace-nodemcu .nodemcu-install {
+    padding:0;
+}
+
 .billboard-content {
     padding: 6px 20px;
 }

@@ -59,6 +59,8 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                 })
 
             });
+            
+            this.loadLuaEditor();
 
             this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
@@ -112,21 +114,49 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             console.log("got onClickListFiles. evt:", evt);
             this.send('l = file.list()\nfor k,v in pairs(l) do\nprint("name:" .. k .. ", size:" .. v)\nend\nl=nil');
         },
-        onClickBlinkOld: function(evt) {
-            console.log("got onClickBlink. evt:", evt);
-            this.send(`lighton=0
-gpio.mode(4, gpio.OUTPUT)
-tmr.alarm(0,1000,1,function()
-    if lighton==0 then 
-        lighton=1 
-        gpio.write(4, gpio.LOW)
-        --print("light on")
-    else 
-        lighton=0 
-        gpio.write(4, gpio.HIGH)
-        --print("light off")
-    end 
-end)`);
+        onClickCreateTestFile: function(evt) {
+            console.log("got onClickCreateTestFile. evt:", evt);
+            this.send(`-- open 'test.lua' in 'a+' mode to append
+file.open("test.lua", "a+")
+-- write 'foo bar' to the end of the file
+file.writeline('print("hello world")')
+file.close()`);
+        },
+        onClickReadTestFile: function(evt) {
+            console.log("got onClickReadTestFile. evt:", evt);
+            this.send(`-- read 'test.lua' in 'r' mode for read-only
+file.open("test.lua", "r")
+-- read to the end of the file
+txt = file.read()
+print(txt)
+file.close()
+txt = nil`);
+        },
+        
+        onClickReadInitFile: function(evt) {
+            console.log("got onClickReadInitFile. evt:", evt);
+            this.send(`-- read 'init.lua' in 'r' mode for read-only
+file.open("init.lua", "r")
+-- read to the end of the file
+txt = file.read()
+print(txt)
+file.close()
+txt = nil`);
+        },
+        onClickCreateInitFile: function(evt) {
+            console.log("got onClickCreateInitFile. evt:", evt);
+            this.send(`-- open 'init.lua' in 'w' mode to overwrite anything
+file.open("init.lua", "w")
+-- write a print statement to the auto-start init.lua file
+file.writeline('print("Just ran auto-start init.lua. Put your own code here.")')
+file.close()
+-- do node.restart() to see init.lua run`);
+        },
+        
+        onClickFormat: function(evt) {
+            console.log("got onClickFormat. evt:", evt);
+            this.send(`-- please wait after this runs as it takes about a minute
+file.format()`);
         },
         onClickBlink: function(evt) {
             console.log("got onClickBlink. evt:", evt);
@@ -168,6 +198,7 @@ end
       
 wifi.sta.getap(listap)`);
         },
+
         sendCtr: 0,
         send: function(txt) {
             var cmds = txt.split(/\n/g);
@@ -175,18 +206,18 @@ wifi.sta.getap(listap)`);
             var that = this;
 
             for (var indx in cmds) {
-                setTimeout(function() {
+                //setTimeout(function() {
 
-                    var cmd = cmds[ctr];
+                var cmd = cmds[ctr];
 
-                    chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {
-                        D: cmd + '\n',
-                        Id: "nodemcu-" + that.sendCtr++
-                    });
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {
+                    D: cmd + '\n',
+                    Id: "nodemcu-" + that.sendCtr++
+                });
 
-                    ctr++;
+                ctr++;
 
-                }, 10 * indx);
+                //}, 10 * indx);
             }
         },
         /**
@@ -257,12 +288,12 @@ wifi.sta.getap(listap)`);
                         //spjs.init(null, "timed", 9600);
                         spjs.init({
                             isSingleSelectMode: true,
-                            defaultBuffer: "timed",
+                            defaultBuffer: "nodemcu",
                             defaultBaud: 9600,
-                            bufferEncouragementMsg: 'For your NodeMCU device please choose the "timed" buffer in the pulldown and a 9600 baud rate before connecting.'
+                            bufferEncouragementMsg: 'For your NodeMCU device please choose the "nodemcu" buffer in the pulldown and a 9600 baud rate before connecting.'
                         });
                         //spjs.showBody();
-                        spjs.consoleToggle();
+                        //spjs.consoleToggle();
 
                         that.widgetSpjs = spjs;
 
@@ -306,6 +337,23 @@ wifi.sta.getap(listap)`);
                             that,
                             "Workspace"
                         );
+                    });
+                }
+            );
+        },
+        /**
+         * Load the widget for the Lua Editor which is based on the Macro widget from
+         * the TinyG workspace.
+         */
+        loadLuaEditor: function() {
+            // #com-chilipeppr-widget-luaeditor-instance
+            chilipeppr.load(
+                "#com-chilipeppr-widget-luaeditor-instance",
+                "http://raw.githubusercontent.com/chilipeppr/com-chilipeppr-widget-macro/master/auto-generated-widget.html",
+                function() {
+                    require(['inline:com-chilipeppr-widget-macro'], function(luaeditor) {
+                        luaeditor.init();
+                        
                     });
                 }
             );

@@ -20,6 +20,10 @@
     padding:10px 15px;
 }
 
+#com-chilipeppr-workspace-nodemcu .nodemcu-install {
+    padding:0;
+}
+
 .billboard-content {
     padding: 6px 20px;
 }
@@ -129,6 +133,8 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                 })
 
             });
+            
+            this.loadLuaEditor();
 
             this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
@@ -182,21 +188,49 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             console.log("got onClickListFiles. evt:", evt);
             this.send('l = file.list()\nfor k,v in pairs(l) do\nprint("name:" .. k .. ", size:" .. v)\nend\nl=nil');
         },
-        onClickBlinkOld: function(evt) {
-            console.log("got onClickBlink. evt:", evt);
-            this.send(`lighton=0
-gpio.mode(4, gpio.OUTPUT)
-tmr.alarm(0,1000,1,function()
-    if lighton==0 then 
-        lighton=1 
-        gpio.write(4, gpio.LOW)
-        --print("light on")
-    else 
-        lighton=0 
-        gpio.write(4, gpio.HIGH)
-        --print("light off")
-    end 
-end)`);
+        onClickCreateTestFile: function(evt) {
+            console.log("got onClickCreateTestFile. evt:", evt);
+            this.send(`-- open 'test.lua' in 'a+' mode to append
+file.open("test.lua", "a+")
+-- write 'foo bar' to the end of the file
+file.writeline('print("hello world")')
+file.close()`);
+        },
+        onClickReadTestFile: function(evt) {
+            console.log("got onClickReadTestFile. evt:", evt);
+            this.send(`-- read 'test.lua' in 'r' mode for read-only
+file.open("test.lua", "r")
+-- read to the end of the file
+txt = file.read()
+print(txt)
+file.close()
+txt = nil`);
+        },
+        
+        onClickReadInitFile: function(evt) {
+            console.log("got onClickReadInitFile. evt:", evt);
+            this.send(`-- read 'init.lua' in 'r' mode for read-only
+file.open("init.lua", "r")
+-- read to the end of the file
+txt = file.read()
+print(txt)
+file.close()
+txt = nil`);
+        },
+        onClickCreateInitFile: function(evt) {
+            console.log("got onClickCreateInitFile. evt:", evt);
+            this.send(`-- open 'init.lua' in 'w' mode to overwrite anything
+file.open("init.lua", "w")
+-- write a print statement to the auto-start init.lua file
+file.writeline('print("Just ran auto-start init.lua. Put your own code here.")')
+file.close()
+-- do node.restart() to see init.lua run`);
+        },
+        
+        onClickFormat: function(evt) {
+            console.log("got onClickFormat. evt:", evt);
+            this.send(`-- please wait after this runs as it takes about a minute
+file.format()`);
         },
         onClickBlink: function(evt) {
             console.log("got onClickBlink. evt:", evt);
@@ -238,6 +272,7 @@ end
       
 wifi.sta.getap(listap)`);
         },
+
         sendCtr: 0,
         send: function(txt) {
             var cmds = txt.split(/\n/g);
@@ -245,18 +280,18 @@ wifi.sta.getap(listap)`);
             var that = this;
 
             for (var indx in cmds) {
-                setTimeout(function() {
+                //setTimeout(function() {
 
-                    var cmd = cmds[ctr];
+                var cmd = cmds[ctr];
 
-                    chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {
-                        D: cmd + '\n',
-                        Id: "nodemcu-" + that.sendCtr++
-                    });
+                chilipeppr.publish("/com-chilipeppr-widget-serialport/jsonSend", {
+                    D: cmd + '\n',
+                    Id: "nodemcu-" + that.sendCtr++
+                });
 
-                    ctr++;
+                ctr++;
 
-                }, 10 * indx);
+                //}, 10 * indx);
             }
         },
         /**
@@ -327,12 +362,12 @@ wifi.sta.getap(listap)`);
                         //spjs.init(null, "timed", 9600);
                         spjs.init({
                             isSingleSelectMode: true,
-                            defaultBuffer: "timed",
+                            defaultBuffer: "nodemcu",
                             defaultBaud: 9600,
-                            bufferEncouragementMsg: 'For your NodeMCU device please choose the "timed" buffer in the pulldown and a 9600 baud rate before connecting.'
+                            bufferEncouragementMsg: 'For your NodeMCU device please choose the "nodemcu" buffer in the pulldown and a 9600 baud rate before connecting.'
                         });
                         //spjs.showBody();
-                        spjs.consoleToggle();
+                        //spjs.consoleToggle();
 
                         that.widgetSpjs = spjs;
 
@@ -379,6 +414,23 @@ wifi.sta.getap(listap)`);
                     });
                 }
             );
+        },
+        /**
+         * Load the widget for the Lua Editor which is based on the Macro widget from
+         * the TinyG workspace.
+         */
+        loadLuaEditor: function() {
+            // #com-chilipeppr-widget-luaeditor-instance
+            chilipeppr.load(
+                "#com-chilipeppr-widget-luaeditor-instance",
+                "http://raw.githubusercontent.com/chilipeppr/com-chilipeppr-widget-macro/master/auto-generated-widget.html",
+                function() {
+                    require(['inline:com-chilipeppr-widget-macro'], function(luaeditor) {
+                        luaeditor.init();
+                        
+                    });
+                }
+            );
         }
     }
 
@@ -399,9 +451,9 @@ wifi.sta.getap(listap)`);
             <div class="row">
 
                 <!-- Main Column -->
-                <div class="col-md-8">
+                <div class="col-md-4">
 
-                    <div class="com-chilipeppr-ws-hdr well">Workspace - NodeMCU
+                    <div class="com-chilipeppr-ws-hdr well">Workspace - NodeMCU (ESP8266 Wifi Device)
 
                         <div class="com-chilipeppr-ws-menu pull-right">
                             <div class="btn-group">
@@ -434,6 +486,10 @@ wifi.sta.getap(listap)`);
                         <div class="btn-group btn-group-sm" role="group">
                             <button type="button" class="btn btn-default" data-click="onClickFsInfo">Filesystem Info</button>
                             <button type="button" class="btn btn-default" data-click="onClickListFiles">List Files</button>
+                            <button type="button" class="btn btn-default" data-click="onClickCreateTestFile">Append to Test File</button>
+                            <button type="button" class="btn btn-default" data-click="onClickReadTestFile">Read Test File</button>
+                            <button type="button" class="btn btn-default" data-click="onClickCreateInitFile">Create Init File</button>
+                            <button type="button" class="btn btn-default" data-click="onClickReadInitFile">Read Init File</button>
                             <button type="button" class="btn btn-default" data-click="onClickFormat">Format</button>
                             <button type="button" class="btn btn-default" data-click="onClickReload">Reload</button>
                         </div>
@@ -450,9 +506,34 @@ wifi.sta.getap(listap)`);
 
                 </div>
 
+                <!-- Center Column -->
+                <div class="col-md-5">
+                    <div id="com-chilipeppr-widget-luaeditor-instance"></div>
+                </div>
+
                 <!-- Right Column -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div id="spjsWidget"></div>
+                    
+                    <div class="well nodemcu-install">
+                        <div class="billboard-img" 
+                            style="height:100px; background-image: url('https://raw.githubusercontent.com/nodemcu/nodemcu-devkit-v1.0/master/Documents/NodeMCU_DEVKIT_1.0.jpg');">
+                        </div>
+                        <div style="padding:10px;">
+                        <p>Install Latest Firmware on your NodeMCU or ESP8266</p>
+                        <ol>
+                        <li>NodeMCU comes with the Lua firmware pre-loaded. ESP8266's don't have Lua preloaded. To load 
+                        the latest firmware version you should build your own at
+                        <a href="http://nodemcu-build.com/index.php">NodeMCU-build.com</a> 
+                        or you can download a tested working version from this workspace at
+                        <a href="https://github.com/chilipeppr/workspace-nodemcu/releases/download/v0.1/nodemcu-master-10-modules-2016-01-10-08-50-08-integer.bin">nodemcu-firmware-2016-01-10.bin</a>
+                        </li>
+                        
+                        <li>You can flash the firmware by using 
+                        <a href="https://github.com/nodemcu/nodemcu-flasher">nodemcu-flasher</a> 
+                        on Windows or <a href="https://github.com/themadinventor/esptool">Python Esptool</a> on Linux. You can also try the flasher tools from <a href="http://bbs.espressif.com/viewtopic.php?f=5&t=433">Espressif Flash Download Tools</a> page.</li>
+                        </div>
+                    </div>
                 </div>
 
             </div>
