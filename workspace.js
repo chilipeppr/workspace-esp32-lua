@@ -56,19 +56,21 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                 that.loadSpjsWidget(function() {
 
                     // if we get here, we can init the Console Widget
-                    that.widgetConsole.init(true);
+                    that.widgetConsole.init(true, /chilipeppr heartbeat/);
                     //that.widgetConsole.resize();
 
                     that.setupResize();
                 })
 
             });
-            
+
             this.loadLuaEditor();
 
             this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
             this.setupNodeMcuCommands();
+
+            this.loadSampleCodeWidget();
             
             this.addBillboardToWorkspaceMenu();
 
@@ -138,7 +140,7 @@ print(txt)
 file.close()
 txt = nil`);
         },
-        
+
         onClickReadInitFile: function(evt) {
             console.log("got onClickReadInitFile. evt:", evt);
             this.send(`-- read 'init.lua' in 'r' mode for read-only
@@ -158,7 +160,7 @@ file.writeline('print("Just ran auto-start init.lua. Put your own code here.")')
 file.close()
 -- do node.restart() to see init.lua run`);
         },
-        
+
         onClickFormat: function(evt) {
             console.log("got onClickFormat. evt:", evt);
             this.send(`-- please wait after this runs as it takes about a minute
@@ -373,6 +375,27 @@ wifi.sta.getap(listap)`);
                         luaeditor.init();
                         luaeditor.resize();
                     });
+                }
+            );
+        },
+        /**
+         * Load Sample Code Widget
+         */
+        loadSampleCodeWidget: function() {
+            chilipeppr.load(
+                "#nodemcu-sample-code",
+                "http://raw.githubusercontent.com/chilipeppr/widget-nodemcusamples/master/auto-generated-widget.html",
+                function() {
+                    // Callback after widget loaded into #myDivWidgetNodemcusamples
+                    // Now use require.js to get reference to instantiated widget
+                    cprequire(
+                        ["inline:com-chilipeppr-widget-nodemcusamples"], // the id you gave your widget
+                        function(myObjWidgetNodemcusamples) {
+                            // Callback that is passed reference to the newly loaded widget
+                            console.log("Widget / NodeMCU Samples just got loaded.", myObjWidgetNodemcusamples);
+                            myObjWidgetNodemcusamples.init();
+                        }
+                    );
                 }
             );
         }

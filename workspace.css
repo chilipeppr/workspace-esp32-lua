@@ -12,6 +12,15 @@
     padding-right:0;    
 }
 
+#com-chilipeppr-widget-nodemcusamples .panel-body {
+    max-height:250px;
+    overflow:auto;
+}
+
+#com-chilipeppr-widget-nodemcusamples .tab-pane {
+    /*overflow:auto;    */
+}
+
 .billboard-content {
     padding: 6px 20px;
 }
