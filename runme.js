@@ -1137,10 +1137,10 @@ var generateCpLoadStmt = function() {
       '    // Now use require.js to get reference to instantiated workspace\n' +
       '    cprequire(\n' +
       '      ["' + id + '"], // the id you gave your workspace\n' +
-      '      function(myWorkspace' + idCamelCase + ') {\n' +
+      '      function(my' + idCamelCase + ') {\n' +
       '        // Callback that is passed reference to the newly loaded workspace\n' +
-      '        console.log("' + widget.name + ' just got loaded.", myWorkspace' + idCamelCase + ');\n' +
-      '        myWorkspace' + idCamelCase + '.init();\n' +
+      '        console.log("' + widget.name + ' just got loaded.", my' + idCamelCase + ');\n' +
+      '        my' + idCamelCase + '.init();\n' +
       '      }\n' +
       '    );\n' +
       '  }\n' +

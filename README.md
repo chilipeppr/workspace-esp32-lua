@@ -40,10 +40,10 @@ chilipeppr.load(
     // Now use require.js to get reference to instantiated workspace
     cprequire(
       ["inline:com-chilipeppr-workspace-nodemcu"], // the id you gave your workspace
-      function(myWorkspaceWorkspaceNodemcu) {
+      function(myWorkspaceNodemcu) {
         // Callback that is passed reference to the newly loaded workspace
-        console.log("Workspace / NodeMCU just got loaded.", myWorkspaceWorkspaceNodemcu);
-        myWorkspaceWorkspaceNodemcu.init();
+        console.log("Workspace / NodeMCU just got loaded.", myWorkspaceNodemcu);
+        myWorkspaceNodemcu.init();
       }
     );
   }
