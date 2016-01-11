@@ -5,9 +5,9 @@ A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeM
 
 ## ChiliPeppr Workspace / NodeMCU
 
-All ChiliPeppr widgets/elements are defined using cpdefine() which is a method
+All ChiliPeppr workspaces/widgets/elements are defined using cpdefine() which is a method
 that mimics require.js. Each defined object must have a unique ID so it does
-not conflict with other ChiliPeppr widgets.
+not conflict with other ChiliPeppr objects.
 
 | Item                  | Value           |
 | -------------         | ------------- | 
@@ -21,28 +21,29 @@ not conflict with other ChiliPeppr widgets.
 
 ## Example Code for chilipeppr.load() Statement
 
-You can use the code below as a starting point for instantiating this widget 
-inside a workspace or from another widget. The key is that you need to load 
-your widget inlined into a div so the DOM can parse your HTML, CSS, and 
-Javascript. Then you use cprequire() to find your widget's Javascript and get 
-back the instance of it.
+You can use the code below as a starting point for instantiating this workspace 
+from ChiliPeppr's Edit Boot Script dialog box. The key is that you need to load 
+your workspace inlined into the standard #pnlWorkspace div so the DOM can parse your HTML, CSS, and 
+Javascript. Then you use cprequire() to find your workspace's Javascript and get 
+back the instance of it to init() it.
 
 ```javascript
-// Inject new div to contain widget or use an existing div with an ID
-$("body").append('<' + 'div id="myDivWorkspaceNodemcu"><' + '/div>');
-
+// This code should be pasted into the ChiliPeppr Edit Boot Javascript dialog box
+// located in the upper right corner of any chilipeppr.com page.
+// The ChiliPeppr environment has a standard div called #pnlWorkspace that
+// this workspace should be loaded into.
 chilipeppr.load(
-  "#myDivWorkspaceNodemcu",
+  "#pnlWorkspace",
   "http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html",
   function() {
-    // Callback after widget loaded into #myDivWorkspaceNodemcu
-    // Now use require.js to get reference to instantiated widget
+    // Callback after workspace loaded into #pnlWorkspace
+    // Now use require.js to get reference to instantiated workspace
     cprequire(
-      ["inline:com-chilipeppr-workspace-nodemcu"], // the id you gave your widget
-      function(myObjWorkspaceNodemcu) {
-        // Callback that is passed reference to the newly loaded widget
-        console.log("Workspace / NodeMCU just got loaded.", myObjWorkspaceNodemcu);
-        myObjWorkspaceNodemcu.init();
+      ["inline:com-chilipeppr-workspace-nodemcu"], // the id you gave your workspace
+      function(myWorkspaceWorkspaceNodemcu) {
+        // Callback that is passed reference to the newly loaded workspace
+        console.log("Workspace / NodeMCU just got loaded.", myWorkspaceWorkspaceNodemcu);
+        myWorkspaceWorkspaceNodemcu.init();
       }
     );
   }
@@ -52,7 +53,8 @@ chilipeppr.load(
 
 ## Publish
 
-This widget/element publishes the following signals. These signals are owned by this widget/element and are published to all objects inside the ChiliPeppr environment that listen to them via the 
+This workspace publishes the following signals. These signals are owned by this workspace and are published to 
+all objects inside the ChiliPeppr environment that listen to them via the 
 chilipeppr.subscribe(signal, callback) method. 
 To better understand how ChiliPeppr's subscribe() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
@@ -64,13 +66,14 @@ To better understand how ChiliPeppr's subscribe() method works see amplify.js's 
           </tr>
       </thead>
       <tbody>
-      <tr><td colspan="2">(No signals defined in this widget/element)</td></tr>    
+      <tr><td colspan="2">(No signals defined in this workspace)</td></tr>    
       </tbody>
   </table>
 
 ## Subscribe
 
-This widget/element subscribes to the following signals. These signals are owned by this widget/element. Other objects inside the ChiliPeppr environment can publish to these signals via the chilipeppr.publish(signal, data) method. 
+This workspace subscribes to the following signals. These signals are owned by this workspace. 
+Other objects inside the ChiliPeppr environment can publish to these signals via the chilipeppr.publish(signal, data) method. 
 To better understand how ChiliPeppr's publish() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-sub" class="table table-bordered table-striped">
@@ -81,13 +84,13 @@ To better understand how ChiliPeppr's publish() method works see amplify.js's do
           </tr>
       </thead>
       <tbody>
-      <tr><td colspan="2">(No signals defined in this widget/element)</td></tr>    
+      <tr><td colspan="2">(No signals defined in this workspace)</td></tr>    
       </tbody>
   </table>
 
 ## Foreign Publish
 
-This widget/element publishes to the following signals that are owned by other objects. 
+This workspace publishes to the following signals that are owned by other objects. 
 To better understand how ChiliPeppr's subscribe() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-foreignpub" class="table table-bordered table-striped">
@@ -98,13 +101,13 @@ To better understand how ChiliPeppr's subscribe() method works see amplify.js's 
           </tr>
       </thead>
       <tbody>
-      <tr><td colspan="2">(No signals defined in this widget/element)</td></tr>    
+      <tr><td colspan="2">(No signals defined in this workspace)</td></tr>    
       </tbody>
   </table>
 
 ## Foreign Subscribe
 
-This widget/element publishes to the following signals that are owned by other objects.
+This workspace publishes to the following signals that are owned by other objects.
 To better understand how ChiliPeppr's publish() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-foreignsub" class="table table-bordered table-striped">
@@ -115,13 +118,13 @@ To better understand how ChiliPeppr's publish() method works see amplify.js's do
           </tr>
       </thead>
       <tbody>
-      <tr><td colspan="2">(No signals defined in this widget/element)</td></tr>    
+      <tr><td colspan="2">(No signals defined in this workspace)</td></tr>    
       </tbody>
   </table>
 
 ## Methods / Properties
 
-The table below shows, in order, the methods and properties inside the widget/element.
+The table below shows, in order, the methods and properties inside the workspace object.
 
   <table id="com-chilipeppr-elem-methodsprops" class="table table-bordered table-striped">
       <thead>
@@ -132,7 +135,7 @@ The table below shows, in order, the methods and properties inside the widget/el
           </tr>
       </thead>
       <tbody>
-      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-nodemcu"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / NodeMCU"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy the ESP8266 on ebay.com or aliexpress.com."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-nodemcu-chilipeppr.c9users.io/widget.html"</td></tr><tr valign="top"><td>widgetConsole</td><td>object</td><td>Contains reference to the Console widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>widgetLuaEditor</td><td>object</td><td>Contains reference to the Lua Editor widget.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Console widget and then the SPJS widget.</td></tr><tr valign="top"><td>setupNodeMcuCommands</td><td>function</td><td>function () <br><br>Setup all the command buttons to do their thing.</td></tr><tr valign="top"><td>onClickReset</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickHeap</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickChipId</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickChipInfo</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFlashId</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFsInfo</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickListFiles</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickCreateTestFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadTestFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadInitFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickCreateInitFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFormat</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickBlink</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadVdd33</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickListAps</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>sendCtr</td><td>number</td><td></td></tr><tr valign="top"><td>send</td><td>function</td><td>function (txt) <br><br>Send the script off to the serial port.</td></tr><tr valign="top"><td>getBillboard</td><td>function</td><td>function () <br><br>Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
+      <tr valign="top"><td>id</td><td>string</td><td>"com-chilipeppr-workspace-nodemcu"<br><br>The ID of the widget. You must define this and make it unique.</td></tr><tr valign="top"><td>name</td><td>string</td><td>"Workspace / NodeMCU"</td></tr><tr valign="top"><td>desc</td><td>string</td><td>"A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy the ESP8266 on ebay.com or aliexpress.com."</td></tr><tr valign="top"><td>url</td><td>string</td><td>"http://raw.githubusercontent.com/chilipeppr/workspace-nodemcu/master/auto-generated-workspace.html"</td></tr><tr valign="top"><td>fiddleurl</td><td>string</td><td>"http://ide.c9.io/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>githuburl</td><td>string</td><td>"http://github.com/chilipeppr/workspace-nodemcu"</td></tr><tr valign="top"><td>testurl</td><td>string</td><td>"http://workspace-nodemcu-chilipeppr.c9users.io/workspace.html"</td></tr><tr valign="top"><td>widgetConsole</td><td>object</td><td>Contains reference to the Console widget object.</td></tr><tr valign="top"><td>widgetSpjs</td><td>object</td><td>Contains reference to the Serial Port JSON Server object.</td></tr><tr valign="top"><td>widgetLuaEditor</td><td>object</td><td>Contains reference to the Lua Editor widget.</td></tr><tr valign="top"><td>init</td><td>function</td><td>function () <br><br>The workspace's init method. It loads the Console widget and then the SPJS widget.</td></tr><tr valign="top"><td>setupNodeMcuCommands</td><td>function</td><td>function () <br><br>Setup all the command buttons to do their thing.</td></tr><tr valign="top"><td>onClickReset</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickHeap</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickChipId</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickChipInfo</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFlashId</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFsInfo</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickListFiles</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickCreateTestFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadTestFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadInitFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickCreateInitFile</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickFormat</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickBlink</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickReadVdd33</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>onClickListAps</td><td>function</td><td>function (evt) </td></tr><tr valign="top"><td>sendCtr</td><td>number</td><td></td></tr><tr valign="top"><td>send</td><td>function</td><td>function (txt) <br><br>Send the script off to the serial port.</td></tr><tr valign="top"><td>getBillboard</td><td>function</td><td>function () <br><br>Returns the billboard HTML, CSS, and Javascript for this Workspace. The billboard
 is used by the home page, the workspace picker, and the fork pulldown to show a
 consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.</td></tr><tr valign="top"><td>addBillboardToWorkspaceMenu</td><td>function</td><td>function () </td></tr><tr valign="top"><td>setupResize</td><td>function</td><td>function () <br><br>Listen to window resize event.</td></tr><tr valign="top"><td>onResize</td><td>function</td><td>function () <br><br>When browser window resizes, forcibly resize the Console window</td></tr><tr valign="top"><td>loadConsoleWidget</td><td>function</td><td>function (callback) <br><br>Load the Console widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadSpjsWidget</td><td>function</td><td>function (callback) <br><br>Load the Serial Port JSON Server widget via chilipeppr.load()</td></tr><tr valign="top"><td>loadFlashMsg</td><td>function</td><td>function () <br><br>Load Flash Module so we can show flash messages.</td></tr><tr valign="top"><td>loadWorkspaceMenu</td><td>function</td><td>function () <br><br>Load the workspace menu.</td></tr><tr valign="top"><td>loadLuaEditor</td><td>function</td><td>function () <br><br>Load the widget for the Lua Editor which is based on the Macro widget from
 the TinyG workspace.</td></tr>

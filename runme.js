@@ -1,4 +1,5 @@
 // ChiliPeppr Runme.js
+// WORKSPACE EDITION
 
 // You should right-click and choose "Run" inside Cloud9 to run this
 // Node.js server script. Then choose "Preview" to load the main HTML page
@@ -168,7 +169,7 @@ var fileHtmlPath = "workspace.html"
 
 var widgetUrl = 'http://' +
     process.env.C9_PROJECT + '-' + process.env.C9_USER +
-    '.c9users.io/widget.html';
+    '.c9users.io/workspace.html';
 var testUrl = 'https://preview.c9users.io/' +
     process.env.C9_USER + '/' +
     process.env.C9_PROJECT + '/' + fileHtmlPath;
@@ -403,9 +404,9 @@ $widget-img
 
 ## ChiliPeppr $widget-name
 
-All ChiliPeppr widgets/elements are defined using cpdefine() which is a method
+All ChiliPeppr workspaces/widgets/elements are defined using cpdefine() which is a method
 that mimics require.js. Each defined object must have a unique ID so it does
-not conflict with other ChiliPeppr widgets.
+not conflict with other ChiliPeppr objects.
 
 | Item                  | Value           |
 | -------------         | ------------- | 
@@ -419,11 +420,11 @@ not conflict with other ChiliPeppr widgets.
 
 ## Example Code for chilipeppr.load() Statement
 
-You can use the code below as a starting point for instantiating this widget 
-inside a workspace or from another widget. The key is that you need to load 
-your widget inlined into a div so the DOM can parse your HTML, CSS, and 
-Javascript. Then you use cprequire() to find your widget's Javascript and get 
-back the instance of it.
+You can use the code below as a starting point for instantiating this workspace 
+from ChiliPeppr's Edit Boot Script dialog box. The key is that you need to load 
+your workspace inlined into the standard #pnlWorkspace div so the DOM can parse your HTML, CSS, and 
+Javascript. Then you use cprequire() to find your workspace's Javascript and get 
+back the instance of it to init() it.
 
 \`\`\`javascript
 $widget-cploadjs
@@ -431,7 +432,8 @@ $widget-cploadjs
 
 ## Publish
 
-This widget/element publishes the following signals. These signals are owned by this widget/element and are published to all objects inside the ChiliPeppr environment that listen to them via the 
+This workspace publishes the following signals. These signals are owned by this workspace and are published to 
+all objects inside the ChiliPeppr environment that listen to them via the 
 chilipeppr.subscribe(signal, callback) method. 
 To better understand how ChiliPeppr's subscribe() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
@@ -451,7 +453,8 @@ To better understand how ChiliPeppr's subscribe() method works see amplify.js's 
 
 ## Subscribe
 
-This widget/element subscribes to the following signals. These signals are owned by this widget/element. Other objects inside the ChiliPeppr environment can publish to these signals via the chilipeppr.publish(signal, data) method. 
+This workspace subscribes to the following signals. These signals are owned by this workspace. 
+Other objects inside the ChiliPeppr environment can publish to these signals via the chilipeppr.publish(signal, data) method. 
 To better understand how ChiliPeppr's publish() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-sub" class="table table-bordered table-striped">
@@ -470,7 +473,7 @@ To better understand how ChiliPeppr's publish() method works see amplify.js's do
 
 ## Foreign Publish
 
-This widget/element publishes to the following signals that are owned by other objects. 
+This workspace publishes to the following signals that are owned by other objects. 
 To better understand how ChiliPeppr's subscribe() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-foreignpub" class="table table-bordered table-striped">
@@ -489,7 +492,7 @@ To better understand how ChiliPeppr's subscribe() method works see amplify.js's 
 
 ## Foreign Subscribe
 
-This widget/element publishes to the following signals that are owned by other objects.
+This workspace publishes to the following signals that are owned by other objects.
 To better understand how ChiliPeppr's publish() method works see amplify.js's documentation at http://amplifyjs.com/api/pubsub/
 
   <table id="com-chilipeppr-elem-pubsubviewer-foreignsub" class="table table-bordered table-striped">
@@ -508,7 +511,7 @@ To better understand how ChiliPeppr's publish() method works see amplify.js's do
 
 ## Methods / Properties
 
-The table below shows, in order, the methods and properties inside the widget/element.
+The table below shows, in order, the methods and properties inside the workspace object.
 
   <table id="com-chilipeppr-elem-methodsprops" class="table table-bordered table-striped">
       <thead>
@@ -785,8 +788,8 @@ var generateWidgetDocs = function() {
       <h2>ChiliPeppr Workspace Docs</h2>
 
       <p>The content below is auto generated as long as you follow the standard
-      template for a ChiliPeppr widget from 
-      <a href="">http://github.com/chilipeppr/widget-template</a>.</p>
+      template for a ChiliPeppr workspace from 
+      <a href="">http://github.com/chilipeppr/workspace-template</a>.</p>
       
       <table class="table table-bordered table-striped">
       <tbody>
@@ -844,10 +847,10 @@ var generateWidgetDocs = function() {
   
   <h2>Example Code for chilipeppr.load() Statement</h2>
   <p>You can use the code below as a starting point for instantiating
-  this widget inside a workspace or from another widget. The key is that
-  you need to load your widget inlined into a div so the DOM can parse
+  this workspace from ChiliPeppr's Edit Boot Script dialog. The key is that
+  you need to load your workspace inlined into the #pnlWorkspace div so the DOM can parse
   your HTML, CSS, and Javascript. Then you use cprequire() to find
-  your widget's Javascript and get back the instantiated instance of it.</p>
+  your workspace's Javascript and get back the instantiated instance of it.</p>
   
   <pre><code class="language-js" 
   data-lang="js">$cp-load-stmt</code></pre>
@@ -971,18 +974,18 @@ var generateWidgetDocs = function() {
   
 </div>
 
-  <h2>Structure of a Widget</h2>
-  <p>The standard structure of a ChiliPeppr widget includes making 
-  your widget out of widjet.js, widjet.css, and widget.html. The final
-  widget has everything inlined into one HTML file. It is important
+  <h2>Structure of a Workspace</h2>
+  <p>The standard structure of a ChiliPeppr workspace includes making 
+  your workspace out of workspace.js, workspace.css, and workspace.html. The final
+  workspace has everything inlined into one HTML file. It is important
   to have everything inlined so the chilipeppr.load() method succeeds
   because it only loads a single URL.
   </p>
       
   <p>When this NodeJs page is executed it will combine 
-  your widget.js, widget.css, and widget.html files into a monolithic 
-  HTML file called auto-generated-widget.html. You should use this file
-  as your final widget inlined file.</p>
+  your workspace.js, workspace.css, and workspace.html files into a monolithic 
+  HTML file called auto-generated-workspace.html. You should use this file
+  as your final workspace inlined file.</p>
   
   <p>This NodeJs script
   will also push your updated content to your forked repo on Github 
@@ -1085,7 +1088,7 @@ var appendKeyVal = function(data, id) {
         '</td></tr>';
     }
   } else {
-    str = '<tr><td colspan="2">(No signals defined in this widget/element)</td></tr>';
+    str = '<tr><td colspan="2">(No signals defined in this workspace)</td></tr>';
   }
   return str;
 }
@@ -1122,21 +1125,22 @@ var generateCpLoadStmt = function() {
     var idCamelCase = arr.join("");
     
     js = '' +
-      '// Inject new div to contain widget or use an existing div with an ID\n' +
-      '$("body").append(\'<\' + \'div id="myDiv' + idCamelCase + '"><\' + \'/div>\');\n\n' +
+      '// This code should be pasted into the ChiliPeppr Edit Boot Javascript dialog box\n' +
+      '// located in the upper right corner of any chilipeppr.com page.\n' +
+      '// The ChiliPeppr environment has a standard div called #pnlWorkspace that\n' +
+      '// this workspace should be loaded into.\n' +
       'chilipeppr.load(\n' +
-      '  "#myDiv' + idCamelCase + '",\n' +
+      '  "#pnlWorkspace",\n' +
       '  "' + rawurl + '",\n' +
       '  function() {\n' +
-      '    // Callback after widget loaded into #myDiv' + idCamelCase + '\n' +
-      '    // Now use require.js to get reference to instantiated widget\n' +
+      '    // Callback after workspace loaded into #pnlWorkspace\n' +
+      '    // Now use require.js to get reference to instantiated workspace\n' +
       '    cprequire(\n' +
-      //'      "inline:com-chilipeppr-widget-yourname", // the id you gave your widget\n' +
-      '      ["' + id + '"], // the id you gave your widget\n' +
-      '      function(myObj' + idCamelCase + ') {\n' +
-      '        // Callback that is passed reference to the newly loaded widget\n' +
-      '        console.log("' + widget.name + ' just got loaded.", myObj' + idCamelCase + ');\n' +
-      '        myObj' + idCamelCase + '.init();\n' +
+      '      ["' + id + '"], // the id you gave your workspace\n' +
+      '      function(myWorkspace' + idCamelCase + ') {\n' +
+      '        // Callback that is passed reference to the newly loaded workspace\n' +
+      '        console.log("' + widget.name + ' just got loaded.", myWorkspace' + idCamelCase + ');\n' +
+      '        myWorkspace' + idCamelCase + '.init();\n' +
       '      }\n' +
       '    );\n' +
       '  }\n' +
@@ -1172,9 +1176,9 @@ var pushToGithubSync = function() {
   // git push
   var stdout = "";
   stdout += "> git add *\n";
-  stdout += '> git commit -m "Made some changes to ChiliPeppr widget using Cloud9"\n';
+  stdout += '> git commit -m "Made some changes to ChiliPeppr myWorkspace using Cloud9"\n';
   stdout += "> git push\n";
-  stdout += proc.execSync('git add *; git commit -m "Made some changes to ChiliPeppr widget using Cloud9"; git push;', { encoding: 'utf8' });
+  stdout += proc.execSync('git add *; git commit -m "Made some changes to ChiliPeppr myWorkspace using Cloud9"; git push;', { encoding: 'utf8' });
   console.log("Pushed to github sync. Stdout:", stdout);
   
   return stdout;
@@ -1186,7 +1190,7 @@ var pushToGithubAsync = function() {
   exec('git add *', function(error1, stdout1, stderr1) {
     // command output is in stdout
     console.log("stdout:", stdout1, "stderr:", stderr1);
-    exec('bash -c "git commit -m \\"Made some changes to ChiliPeppr widget using Cloud9\\""', function(error2, stdout2, stderr2) {
+    exec('bash -c "git commit -m \\"Made some changes to ChiliPeppr myWorkspace using Cloud9\\""', function(error2, stdout2, stderr2) {
       // command output is in stdout
       console.log("stdout:", stdout2, "stderr:", stderr2);
       exec('git push', function(error3, stdout3, stderr3) {
@@ -1221,9 +1225,9 @@ var mergeFromCpTemplateRepo = function() {
   var stdout = "";
   stdout += pushToGithubSync();
   stdout += "> git checkout master\n";
-  stdout += "> git pull https://github.com/chilipeppr/widget-template.git\n";
+  stdout += "> git pull https://github.com/chilipeppr/myWorkspace-template.git\n";
   try {
-    stdout += proc.execSync('git checkout master; git pull https://github.com/chilipeppr/widget-template.git', { encoding: 'utf8' });
+    stdout += proc.execSync('git checkout master; git pull https://github.com/chilipeppr/myWorkspace-template.git', { encoding: 'utf8' });
   } catch (ex) {
     console.log("error on merge:", ex);
     stdout += "Tiny little error on merge.\n";
@@ -1303,13 +1307,13 @@ var getMainPage = function() {
   var giturl = getGithubUrl();
 
   html = '<html><body>' +
-    'Your ChiliPeppr Widget can be tested at ' +
+    'Your ChiliPeppr Workspace can be tested at ' +
     '<a target="_blank" href="' + widgetUrl + '">' +
     widgetUrl + '</a><br><br>\n\n' +
-    'Your ChiliPeppr Widget can be edited at ' +
+    'Your ChiliPeppr Workspace can be edited at ' +
     '<a target="_blank" href="' + editUrl + '">' +
     editUrl + '</a><br><br>\n\n' +
-    'Your ChiliPeppr Widget Github Url for forking ' +
+    'Your ChiliPeppr Workspace Github Url for forking ' +
     '<a target="_blank" href="' + giturl.url + '">' +
     giturl + '</a><br><br>\n\n' +
     'C9_PROJECT: ' + process.env.C9_PROJECT + '<br>\n' +
@@ -1323,7 +1327,7 @@ var getMainPage = function() {
   //html += '<br><br>Just pushed updates to your Github repo.';
   
   var jsLoad = generateCpLoadStmt();
-  html += '<br><br>Sample chilipeppr.load() Javascript for Your Widget\n<pre>' +
+  html += '<br><br>Sample chilipeppr.load() Javascript for Your Workspace\n<pre>' +
     jsLoad +
     '</pre>\n';
     
