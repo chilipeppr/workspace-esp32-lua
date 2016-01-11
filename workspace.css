@@ -8,6 +8,10 @@
     padding:0;
 }
 
+#com-chilipeppr-workspace-nodemcu .col-nopadrt {
+    padding-right:0;    
+}
+
 .billboard-content {
     padding: 6px 20px;
 }

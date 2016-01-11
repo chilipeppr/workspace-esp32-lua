@@ -35,6 +35,10 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
          */
         widgetSpjs: null,
         /**
+         * Contains reference to the Lua Editor widget.
+         */
+        widgetLuaEditor: null,
+        /**
          * The workspace's init method. It loads the Console widget and then the SPJS widget.
          */
         init: function() {
@@ -65,6 +69,8 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
             this.setupNodeMcuCommands();
+            
+            this.addBillboardToWorkspaceMenu();
 
         },
         /**
@@ -200,6 +206,9 @@ wifi.sta.getap(listap)`);
         },
 
         sendCtr: 0,
+        /**
+         * Send the script off to the serial port.
+         */
         send: function(txt) {
             var cmds = txt.split(/\n/g);
             var ctr = 0;
@@ -225,10 +234,16 @@ wifi.sta.getap(listap)`);
          * is used by the home page, the workspace picker, and the fork pulldown to show a
          * consistent name/image/description tag for the workspace throughout the ChiliPeppr ecosystem.
          */
-        billboard: function() {
-            var el = $('#' + this.id + '-billboard');
+        getBillboard: function() {
+            var el = $('#' + this.id + '-billboard').clone();
             el.removeClass("hidden");
+            el.find('.billboard-desc').text(this.desc);
             return el;
+        },
+        addBillboardToWorkspaceMenu: function() {
+            // get copy of billboard
+            var billboardEl = this.getBillboard();
+            $('#' + this.id + ' .com-chilipeppr-ws-billboard').append(billboardEl);
         },
         /**
          * Listen to window resize event.
@@ -241,6 +256,7 @@ wifi.sta.getap(listap)`);
          */
         onResize: function() {
             this.widgetConsole.resize();
+            this.widgetLuaEditor.resize();
         },
         /**
          * Load the Console widget via chilipeppr.load()
@@ -347,13 +363,15 @@ wifi.sta.getap(listap)`);
          */
         loadLuaEditor: function() {
             // #com-chilipeppr-widget-luaeditor-instance
+            var that = this;
             chilipeppr.load(
                 "#com-chilipeppr-widget-luaeditor-instance",
                 "http://raw.githubusercontent.com/chilipeppr/widget-luaeditor/master/auto-generated-widget.html",
                 function() {
-                    require(['inline:com-chilipeppr-widget-macro'], function(luaeditor) {
+                    require(['inline:com-chilipeppr-widget-luaeditor'], function(luaeditor) {
+                        that.widgetLuaEditor = luaeditor;
                         luaeditor.init();
-                        
+                        luaeditor.resize();
                     });
                 }
             );
