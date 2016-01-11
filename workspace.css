@@ -12,6 +12,10 @@
     padding-right:0;    
 }
 
+#com-chilipeppr-workspace-nodemcu .col-nopadleft {
+    padding-left:0;    
+}
+
 #com-chilipeppr-widget-nodemcusamples .panel-body {
     max-height:250px;
     overflow:auto;

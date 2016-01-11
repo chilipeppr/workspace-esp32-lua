@@ -28,6 +28,10 @@
     padding-right:0;    
 }
 
+#com-chilipeppr-workspace-nodemcu .col-nopadleft {
+    padding-left:0;    
+}
+
 #com-chilipeppr-widget-nodemcusamples .panel-body {
     max-height:250px;
     overflow:auto;
@@ -91,6 +95,7 @@ cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(termWs) {
     console.log("initting workspace");
     termWs.init();
     $('title').html("Console Workspace");
+    $('body').css('padding', '10px');
 
 } /*end_test*/ );
 
@@ -499,13 +504,12 @@ wifi.sta.getap(listap)`);
     <div id="com-chilipeppr-widget-flash-instance"></div>
 
     <div id="com-chilipeppr-workspace-nodemcu" class="hidden">
-        <p>&nbsp;</p>
-
+        
         <div class="container-fluid">
             <div class="row">
 
                 <!-- Left Column -->
-                <div class="col-md-4 col-nopadrt">
+                <div class="col-md-4 col-nopadrt col-nopadleft">
 
                     <div class="com-chilipeppr-ws-hdr well">Workspace - NodeMCU (ESP8266)
 
@@ -571,7 +575,7 @@ wifi.sta.getap(listap)`);
                 </div>
 
                 <!-- Right Column -->
-                <div class="col-md-3">
+                <div class="col-md-3 col-nopadrt">
                     <div id="spjsWidget"></div>
                     
                     <div class="well nodemcu-install">

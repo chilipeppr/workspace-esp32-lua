@@ -4,6 +4,7 @@ cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(termWs) {
     console.log("initting workspace");
     termWs.init();
     $('title').html("Console Workspace");
+    $('body').css('padding', '10px');
 
 } /*end_test*/ );
 
