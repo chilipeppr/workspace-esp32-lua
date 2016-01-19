@@ -38,15 +38,15 @@
     <div id="com-chilipeppr-widget-flash-instance"></div>
 
     <div id="com-chilipeppr-workspace-nodemcu" class="hidden">
-        
+
         <div class="container-fluid">
             <div class="row">
 
                 <!-- Left Column -->
                 <div class="col-md-4 col-nopadrt col-nopadleft">
 
-                    
-                    
+
+
                     <div class="com-chilipeppr-ws-hdr well">Workspace - NodeMCU (ESP8266)
 
 
@@ -63,21 +63,21 @@
                                             <!-- End Billboard -->
                                         </li>
 
-                                        
+
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="xwell xcom-chilipeppr-ws-hdr nodemcu-commands xhidden" style="padding-top:10px;">
-                        <button type="button" class="btn btn-xs btn-default" data-click="onClickReset">Reset</button>
-                        <!--<div class="btn-group btn-group-xs" role="group">-->
+                            <button type="button" class="btn btn-xs btn-default" data-click="onClickReset">Reset</button>
+                            <!--<div class="btn-group btn-group-xs" role="group">-->
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickHeap">Heap</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickChipId">Chip ID</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickChipInfo">Chip Info</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickFlashId">Flash ID</button>
-                        <!--</div>-->
-                        <!--<div class="btn-group btn-group-xs" role="group">-->
+                            <!--</div>-->
+                            <!--<div class="btn-group btn-group-xs" role="group">-->
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickFsInfo">Filesystem Info</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickListFiles">List Files</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickCreateTestFile">Append to Test File</button>
@@ -86,15 +86,15 @@
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickReadInitFile">Read Init File</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickFormat">Format</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickReload">Reload</button>
-                        <!--</div>-->
-                        <!--<div class="btn-group btn-group-xs" role="group">-->
+                            <!--</div>-->
+                            <!--<div class="btn-group btn-group-xs" role="group">-->
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickBlink">Blink LED</button>
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickReadVdd33">Read Voltage</button>
-                        <!--</div>-->
-                        <!--<div class="btn-group btn-group-xs" role="group">-->
+                            <!--</div>-->
+                            <!--<div class="btn-group btn-group-xs" role="group">-->
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickListAps">List Access Points</button>
-                        <!--</div>-->
-                    </div>
+                            <!--</div>-->
+                        </div>
 
                     </div>
 
@@ -103,7 +103,7 @@
                         Sample code goes here
                     </div>
 
-                    
+
 
                     <div id="consoleWidget"></div>
 
@@ -117,30 +117,29 @@
                 <!-- Right Column -->
                 <div class="col-md-3 col-nopadrt">
                     <div id="spjsWidget"></div>
-                    
-                    <div class="well nodemcu-install">
-                        <div class="billboard-img" 
-                            style="height:100px; background-image: url('https://raw.githubusercontent.com/nodemcu/nodemcu-devkit-v1.0/master/Documents/NodeMCU_DEVKIT_1.0.jpg');">
-                        </div>
-                        <div style="padding:10px;">
-                        <p>Install Latest Firmware on your NodeMCU or ESP8266</p>
-                        <ol>
-                        <li>NodeMCU comes with the Lua firmware pre-loaded. ESP8266's don't have Lua preloaded. To load 
-                        the latest firmware version you should build your own at
-                        <a href="http://nodemcu-build.com/index.php">NodeMCU-build.com</a> 
-                        or you can download a tested working version from this workspace at
-                        <a href="https://github.com/chilipeppr/workspace-nodemcu/releases/download/v0.1/nodemcu-master-10-modules-2016-01-10-08-50-08-integer.bin">nodemcu-firmware-2016-01-10.bin</a>
-                        </li>
-                        
-                        <li>You can flash the firmware by using 
-                        <a href="https://github.com/nodemcu/nodemcu-flasher">nodemcu-flasher</a> 
-                        on Windows or <a href="https://github.com/themadinventor/esptool">Python Esptool</a> on Linux. You can also try the flasher tools 
-                        from <a href="http://bbs.espressif.com/viewtopic.php?f=5&t=433">Espressif Flash Download Tools</a> page.</li>
-                        
-                        <p>Documentation</p>
-                        <li><a href="http://nodemcu.readthedocs.org/en">http://nodemcu.readthedocs.org/en</a></li>
-                        </div>
-                    </div>
+
+                    <div id="com-chilipeppr-widget-nodemcu-docs-instance"></div>
+                    <!--<div class="well nodemcu-install">-->
+                        <!--<div class="billboard-img" style="height:100px; background-image: url('https://raw.githubusercontent.com/nodemcu/nodemcu-devkit-v1.0/master/Documents/NodeMCU_DEVKIT_1.0.jpg');">-->
+                        <!--</div>-->
+                        <!--<div style="padding:10px;">-->
+                        <!--    <p>Install Latest Firmware on your NodeMCU or ESP8266</p>-->
+                        <!--    <ol>-->
+                        <!--        <li>NodeMCU comes with the Lua firmware pre-loaded. ESP8266's don't have Lua preloaded. To load the latest firmware version you should build your own at-->
+                        <!--            <a href="http://nodemcu-build.com/index.php">NodeMCU-build.com</a> or you can download a tested working version from this workspace at-->
+                        <!--            <a href="https://github.com/chilipeppr/workspace-nodemcu/releases/download/v0.1/nodemcu-master-10-modules-2016-01-10-08-50-08-integer.bin">nodemcu-firmware-2016-01-10.bin</a>-->
+                        <!--        </li>-->
+
+                        <!--        <li>You can flash the firmware by using-->
+                        <!--            <a href="https://github.com/nodemcu/nodemcu-flasher">nodemcu-flasher</a> on Windows or <a href="https://github.com/themadinventor/esptool">Python Esptool</a> on Linux. You can also try the flasher tools from <a href="http://bbs.espressif.com/viewtopic.php?f=5&t=433">Espressif Flash Download Tools</a>                                    page.</li>-->
+                        <!--    </ol>-->
+
+                        <!--    <p>Documentation</p>-->
+                        <!--    <ol>-->
+                        <!--        <li><a href="http://nodemcu.readthedocs.org/en">http://nodemcu.readthedocs.org/en</a></li>-->
+                        <!--    </ol>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
             </div>
@@ -163,7 +162,9 @@
 
             </div>
             <p class="billboard-desc">
-               A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy the ESP8266 on ebay.com or aliexpress.com.
+                A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU
+                works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy
+                the ESP8266 on ebay.com or aliexpress.com.
 
 
             </p>

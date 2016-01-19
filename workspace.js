@@ -73,6 +73,7 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             this.setupNodeMcuCommands();
 
             this.loadSampleCodeWidget();
+            this.loadDocsWidget();
             
             this.addBillboardToWorkspaceMenu();
 
@@ -397,6 +398,27 @@ wifi.sta.getap(listap)`);
                             console.log("Widget / NodeMCU Samples just got loaded.", myObjWidgetNodemcusamples);
                             myObjWidgetNodemcusamples.init();
                         }
+                    );
+                }
+            );
+        },
+        /**
+         * Load Firmware/Docs widget
+         */
+        loadDocsWidget: function() {
+            chilipeppr.load(
+                "#com-chilipeppr-widget-nodemcu-docs-instance",
+                "http://raw.githubusercontent.com/chilipeppr/widget-nodemcu-docs/master/auto-generated-widget.html",
+                function() {
+                    // Callback after widget loaded into #myDivWidgetNodemcusamples
+                    // Now use require.js to get reference to instantiated widget
+                    cprequire(
+                        ["inline:com-chilipeppr-widget-nodemcu-docs"], // the id you gave your widget
+                        function(myObjWidgetNodemcuDocs) {
+                            // Callback that is passed reference to the newly loaded widget
+                            console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetNodemcuDocs);
+                            myObjWidgetNodemcuDocs.init();
+                          }
                     );
                 }
             );
