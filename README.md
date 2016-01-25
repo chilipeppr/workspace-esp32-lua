@@ -1,7 +1,7 @@
 # com-chilipeppr-workspace-nodemcu
 A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy the ESP8266 on ebay.com or aliexpress.com.
 
-![alt text](screenshot.png "Screenshot")
+
 
 ## ChiliPeppr Workspace / NodeMCU
 
