@@ -261,8 +261,8 @@ wifi.sta.getap(listap)`);
          * When browser window resizes, forcibly resize the Console window
          */
         onResize: function() {
-            this.widgetConsole.resize();
-            this.widgetLuaEditor.resize();
+            if (this.widgetConsole) this.widgetConsole.resize();
+            if (this.widgetLuaEditor) this.widgetLuaEditor.resize();
         },
         /**
          * Load the Console widget via chilipeppr.load()
