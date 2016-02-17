@@ -4,6 +4,10 @@
     padding:10px 15px;
 }
 
+.nodemcu-commands {
+    line-height: 24px;    
+}
+
 #com-chilipeppr-workspace-nodemcu .nodemcu-install {
     padding:0;
 }
