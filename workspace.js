@@ -274,7 +274,7 @@ wifi.sta.getap(listap)`);
                 "#consoleWidget",
                 // "http://fiddle.jshell.net/chilipeppr/rczajbx0/show/light/",
                 // "http://raw.githubusercontent.com/chilipeppr/widget-console/master/auto-generated-widget.html",
-                "http://widget-spjs-chilipeppr.c9users.io/widget.html",
+                "http://widget-console-chilipeppr.c9users.io/widget.html",
                 function() {
                     // Callback after widget loaded into #myDivWidgetInsertedInto
                     cprequire(
