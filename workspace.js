@@ -282,7 +282,8 @@ wifi.sta.getap(listap)`);
                             console.log("My widget just got loaded.", mywidget);
 
                             that.widgetConsole = mywidget;
-
+                            that.widgetConsole.init();
+                            
                             // load spjs widget so we can test
                             //http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/
                             callback();
