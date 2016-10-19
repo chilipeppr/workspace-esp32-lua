@@ -148,19 +148,18 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             this.loadConsoleWidget(function() {
 
                 console.log("console widget loaded, now lets load spjs");
-
-                // now we can load the SPJS widget
-                that.loadSpjsWidget(function() {
-
-                    // if we get here, we can init the Console Widget
-                    // (we are now initting the widget immediately)
-                    that.widgetConsole.init(true, /chilipeppr heartbeat/);
-                    //that.widgetConsole.resize();
-
-                    that.setupResize();
-                })
-
             });
+            
+            // now we can load the SPJS widget
+            that.loadSpjsWidget(function() {
+
+                // if we get here, we can init the Console Widget
+                // (we are now initting the widget immediately)
+                that.widgetConsole.init(true, /chilipeppr heartbeat/);
+                //that.widgetConsole.resize();
+
+                that.setupResize();
+            })
 
             this.loadLuaEditor();
 
