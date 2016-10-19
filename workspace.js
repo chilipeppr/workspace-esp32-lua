@@ -58,7 +58,8 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
                 that.loadSpjsWidget(function() {
 
                     // if we get here, we can init the Console Widget
-                    that.widgetConsole.init(true, /chilipeppr heartbeat/);
+                    // (we are now initting the widget immediately)
+                    //that.widgetConsole.init(true, /chilipeppr heartbeat/);
                     //that.widgetConsole.resize();
 
                     that.setupResize();
@@ -282,7 +283,7 @@ wifi.sta.getap(listap)`);
                             console.log("My widget just got loaded.", mywidget);
 
                             that.widgetConsole = mywidget;
-                            that.widgetConsole.init();
+                            that.widgetConsole.init(true);
                             
                             // load spjs widget so we can test
                             //http://fiddle.jshell.net/chilipeppr/vetj5fvx/show/light/
