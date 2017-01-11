@@ -320,7 +320,7 @@ wifi.sta.getap(listap)`);
                         spjs.init({
                             isSingleSelectMode: true,
                             defaultBuffer: "nodemcu",
-                            defaultBaud: 9600,
+                            defaultBaud: 115200, //9600,
                             bufferEncouragementMsg: 'For your NodeMCU device please choose the "nodemcu" buffer in the pulldown and a 9600 baud rate before connecting.'
                         });
                         //spjs.showBody();
