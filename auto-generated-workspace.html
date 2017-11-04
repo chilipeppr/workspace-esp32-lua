@@ -272,25 +272,34 @@ file.format()`);
         },
         onClickBlink: function(evt) {
             console.log("got onClickBlink. evt:", evt);
-            this.send(`-- Config
-pin = 4            --> GPIO2
-value = gpio.LOW
-duration = 1000    --> 1 second
--- Function toggles LED state
-function toggleLED ()
-    if value == gpio.LOW then
-        value = gpio.HIGH
-    else
-        value = gpio.LOW
-    end
+            this.send(`-- Blink built-in LED on Wemos
+m = {}
 
-    gpio.write(pin, value)
+-- Config
+m.pin = 2 -- 2 on DOIT, 16 on Wemos
+m.value = 0
+m.duration = 500
+m.ctr = 0
+
+function m.toggleLED ()
+  if m.value == 0 then
+    m.value = 1
+  else
+    m.value = 0
+  end
+  
+  gpio.write(m.pin, m.value)
+  
+  -- m.ctr = m.ctr + 1
+  -- if m.ctr > 10 then
+  --   m.mytimer:unregister()
+  -- end
 end
 -- Initialise the pin
-gpio.mode(pin, gpio.OUTPUT)
-gpio.write(pin, value)
--- Create an interval
-tmr.alarm(0, duration, 1, toggleLED)`);
+gpio.config( { gpio={m.pin}, dir=gpio.OUT } )
+-- tmr.alarm(0, duration, 1, toggleLED)
+m.mytimer = tmr.create()
+m.mytimer:alarm(m.duration, tmr.ALARM_AUTO, m.toggleLED)`);
         },
         onClickReadVdd33: function(evt) {
             console.log("got onClickReadVdd33. evt:", evt);
