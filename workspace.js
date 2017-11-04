@@ -1,5 +1,5 @@
 /* global cpdefine chilipeppr cprequire */
-cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(ws) {
+cprequire_test(["inline:com-chilipeppr-workspace-esp32-lua"], function(ws) {
 
     console.log("initting workspace");
     ws.init();
@@ -10,20 +10,20 @@ cprequire_test(["inline:com-chilipeppr-workspace-nodemcu"], function(ws) {
 } /*end_test*/ );
 
 // This is the main definition of your widget. Give it a unique name.
-cpdefine("inline:com-chilipeppr-workspace-nodemcu", ["chilipeppr_ready"], function() {
+cpdefine("inline:com-chilipeppr-workspace-esp32-lua", ["chilipeppr_ready"], function() {
     return {
         /**
          * The ID of the widget. You must define this and make it unique.
          */
-        id: "com-chilipeppr-workspace-nodemcu", // Make the id the same as the cpdefine id
-        name: "Workspace / NodeMCU", // The descriptive name of your widget.
-        desc: `A ChiliPeppr Workspace that lets you interact with the NodeMCU device. \
-The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge \
-so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU \
+        id: "com-chilipeppr-workspace-esp32-lua", // Make the id the same as the cpdefine id
+        name: "Workspace / ESP32 for Lua (NodeMCU)", // The descriptive name of your widget.
+        desc: `A ChiliPeppr Workspace that lets you interact with an ESP32 Lua device (NodeMCU for ESP32). \
+The device is an ESP32 wifi module with an attached USB serial port bridge \
+so you can easily use it and program it from your computer via the serial port. Thus, the esp32 \
 works brilliantly with ChiliPeppr. Secondly, \
-the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program \
-the device.This workspace gives you convenience methods for programming the NodeMCU device. \
-You can buy the ESP8266 on ebay.com or aliexpress.com.`,
+the esp32 has the Lua language preloaded onto it so you can easily program \
+the device.This workspace gives you convenience methods for programming the esp32 device. \
+You can buy the esp32 on ebay.com or aliexpress.com.`,
         url: "(auto fill by runme.js)", // The final URL of the working widget as a single HTML file with CSS and Javascript inlined. You can let runme.js auto fill this if you are using Cloud9.
         fiddleurl: "(auto fill by runme.js)", // The edit URL. This can be auto-filled by runme.js in Cloud9 if you'd like, or just define it on your own to help people know where they can edit/fork your widget
         githuburl: "(auto fill by runme.js)", // The backing github repo
@@ -78,7 +78,7 @@ You can buy the ESP8266 on ebay.com or aliexpress.com.`,
             this.setupNodeMcuCommands();
 
             this.loadFileListWidget();
-            this.loadSampleCodeWidget();
+            // this.loadSampleCodeWidget();
             this.loadDocsWidget();
             
             this.addBillboardToWorkspaceMenu();
@@ -356,7 +356,8 @@ wifi.sta.getap(listap)`);
             // Workspace Menu with Workspace Billboard
             var that = this;
             chilipeppr.load(
-                "http://fiddle.jshell.net/chilipeppr/zMbL9/show/light/",
+                "http://raw.githubusercontent.com/chilipeppr/widget-pubsubviewer/master/auto-generated-widget.html",
+                // "http://fiddle.jshell.net/chilipeppr/zMbL9/show/light/",
                 function() {
                     require(['inline:com-chilipeppr-elem-pubsubviewer'], function(pubsubviewer) {
 
