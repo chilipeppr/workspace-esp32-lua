@@ -164,7 +164,7 @@ You can buy the esp32 on ebay.com or aliexpress.com.`,
                     that.setupResize();
                 });
                 
-            })
+            });
 
             this.loadLuaEditor();
 
@@ -434,7 +434,8 @@ wifi.sta.getap(listap)`);
          */
         loadFlashMsg: function() {
             chilipeppr.load("#com-chilipeppr-widget-flash-instance",
-                "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
+                "http://raw.githubusercontent.com/chilipeppr/element-flash/master/auto-generated-widget.html",
+                // "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
                 function() {
                     console.log("mycallback got called after loading flash msg module");
                     cprequire(["inline:com-chilipeppr-elem-flashmsg"], function(fm) {
@@ -534,21 +535,38 @@ wifi.sta.getap(listap)`);
          */
         loadDocsWidget: function() {
             chilipeppr.load(
-                "#com-chilipeppr-widget-nodemcu-docs-instance",
-                "http://raw.githubusercontent.com/chilipeppr/widget-nodemcu-docs/master/auto-generated-widget.html",
-                function() {
-                    // Callback after widget loaded into #myDivWidgetNodemcusamples
-                    // Now use require.js to get reference to instantiated widget
-                    cprequire(
-                        ["inline:com-chilipeppr-widget-nodemcu-docs"], // the id you gave your widget
-                        function(myObjWidgetNodemcuDocs) {
-                            // Callback that is passed reference to the newly loaded widget
-                            console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetNodemcuDocs);
-                            myObjWidgetNodemcuDocs.init();
-                          }
-                    );
-                }
+              "#com-chilipeppr-widget-nodemcu-docs-instance",
+              "http://raw.githubusercontent.com/chilipeppr/widget-esp32-docs/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetEsp32Docs
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-esp32-docs"], // the id you gave your widget
+                  function(myObjWidgetEsp32Docs) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetEsp32Docs);
+                    myObjWidgetEsp32Docs.init();
+                  }
+                );
+              }
             );
+            
+            // chilipeppr.load(
+            //     "#com-chilipeppr-widget-nodemcu-docs-instance",
+            //     "http://raw.githubusercontent.com/chilipeppr/widget-nodemcu-docs/master/auto-generated-widget.html",
+            //     function() {
+            //         // Callback after widget loaded into #myDivWidgetNodemcusamples
+            //         // Now use require.js to get reference to instantiated widget
+            //         cprequire(
+            //             ["inline:com-chilipeppr-widget-nodemcu-docs"], // the id you gave your widget
+            //             function(myObjWidgetNodemcuDocs) {
+            //                 // Callback that is passed reference to the newly loaded widget
+            //                 console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetNodemcuDocs);
+            //                 myObjWidgetNodemcuDocs.init();
+            //               }
+            //         );
+            //     }
+            // );
         }
     }
 
@@ -562,7 +580,7 @@ wifi.sta.getap(listap)`);
 
     <div id="com-chilipeppr-widget-flash-instance"></div>
 
-    <div id="com-chilipeppr-workspace-nodemcu" class="hidden">
+    <div id="com-chilipeppr-workspace-esp32-lua" class="hidden">
 
         <div class="container-fluid">
             <div class="row">
@@ -597,7 +615,7 @@ wifi.sta.getap(listap)`);
                         <div class="xwell xcom-chilipeppr-ws-hdr nodemcu-commands xhidden" style="padding-top:10px;">
                             <div class="well" style="margin-bottom:10px;padding:10px;min-height:50px;font-size:11px;line-height:14px;">
                                 <button type="button" class="btn btn-sm btn-default" style="float:left; margin-right:20px;" data-click="onClickReset">Reset</button>
-                                If your commands into the device stall, you should reset it.
+                                If your commands into the device stall, you should reset it here. If this reset button doesn't work, manually reset the device.
                             </div>
                             <!--<div class="btn-group btn-group-xs" role="group">-->
                             <button type="button" class="btn btn-xs btn-default" data-click="onClickHeap">Heap</button>
@@ -649,7 +667,7 @@ wifi.sta.getap(listap)`);
                     <div id="com-chilipeppr-widget-nodemcu-docs-instance"></div>
                     
                     <div id="nodemcu-sample-code">
-                        Sample code goes here
+                        <!--Sample code goes here-->
                     </div>
 
                 </div>
@@ -658,25 +676,23 @@ wifi.sta.getap(listap)`);
         </div>
     </div>
 
-    <div id="com-chilipeppr-workspace-nodemcu-billboard" class="hidden">
+    <div id="com-chilipeppr-workspace-esp32-lua-billboard" class="hidden">
         <div class="billboard-content">
-            <h4 class="billboard-title" style="">NodeMCU Workspace</h4>
+            <h4 class="billboard-title" style="">ESP32 for Lua Workspace</h4>
 
-            <p class="billboard-url" style=""><a href="http://chilipeppr.com/nodemcu">chilipeppr.com/nodemcu</a>
+            <p class="billboard-url" style=""><a href="http://chilipeppr.com/esp32">chilipeppr.com/esp32</a>
 
             </p>
             <div class="billboard-imgcontain" style="">
-                <a href="http://chilipeppr.com/nodemcu">
-                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-nodemcu/raw/master/nodemcu.jpg')" />
+                <a href="http://chilipeppr.com/esp32">
+                    <div class="billboard-img" style="background-image: url('https://github.com/chilipeppr/workspace-esp32-lua/raw/master/nodemcu.jpg')" />
                 </a>
                 <div class="billboard-stats2">
                 </div>
 
             </div>
             <p class="billboard-desc">
-                A ChiliPeppr Workspace that lets you interact with the NodeMCU device. The NodeMCU device is an ESP8266 wifi module with an attached USB serial port bridge so you can easily use it and program it from your computer via the serial port. Thus, the NodeMCU
-                works brilliantly with ChiliPeppr. Secondly, the NodeMCU has the Lua language preloaded onto the ESP8266 so you can easily program the device.This workspace gives you convenience methods for programming the NodeMCU device. You can buy
-                the ESP8266 on ebay.com or aliexpress.com.
+                put description here
 
 
             </p>

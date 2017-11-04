@@ -69,7 +69,7 @@ You can buy the esp32 on ebay.com or aliexpress.com.`,
                     that.setupResize();
                 });
                 
-            })
+            });
 
             this.loadLuaEditor();
 
@@ -339,7 +339,8 @@ wifi.sta.getap(listap)`);
          */
         loadFlashMsg: function() {
             chilipeppr.load("#com-chilipeppr-widget-flash-instance",
-                "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
+                "http://raw.githubusercontent.com/chilipeppr/element-flash/master/auto-generated-widget.html",
+                // "http://fiddle.jshell.net/chilipeppr/90698kax/show/light/",
                 function() {
                     console.log("mycallback got called after loading flash msg module");
                     cprequire(["inline:com-chilipeppr-elem-flashmsg"], function(fm) {
@@ -439,21 +440,38 @@ wifi.sta.getap(listap)`);
          */
         loadDocsWidget: function() {
             chilipeppr.load(
-                "#com-chilipeppr-widget-nodemcu-docs-instance",
-                "http://raw.githubusercontent.com/chilipeppr/widget-nodemcu-docs/master/auto-generated-widget.html",
-                function() {
-                    // Callback after widget loaded into #myDivWidgetNodemcusamples
-                    // Now use require.js to get reference to instantiated widget
-                    cprequire(
-                        ["inline:com-chilipeppr-widget-nodemcu-docs"], // the id you gave your widget
-                        function(myObjWidgetNodemcuDocs) {
-                            // Callback that is passed reference to the newly loaded widget
-                            console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetNodemcuDocs);
-                            myObjWidgetNodemcuDocs.init();
-                          }
-                    );
-                }
+              "#com-chilipeppr-widget-nodemcu-docs-instance",
+              "http://raw.githubusercontent.com/chilipeppr/widget-esp32-docs/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetEsp32Docs
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-esp32-docs"], // the id you gave your widget
+                  function(myObjWidgetEsp32Docs) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetEsp32Docs);
+                    myObjWidgetEsp32Docs.init();
+                  }
+                );
+              }
             );
+            
+            // chilipeppr.load(
+            //     "#com-chilipeppr-widget-nodemcu-docs-instance",
+            //     "http://raw.githubusercontent.com/chilipeppr/widget-nodemcu-docs/master/auto-generated-widget.html",
+            //     function() {
+            //         // Callback after widget loaded into #myDivWidgetNodemcusamples
+            //         // Now use require.js to get reference to instantiated widget
+            //         cprequire(
+            //             ["inline:com-chilipeppr-widget-nodemcu-docs"], // the id you gave your widget
+            //             function(myObjWidgetNodemcuDocs) {
+            //                 // Callback that is passed reference to the newly loaded widget
+            //                 console.log("Widget / NodeMCU Docs & Install just got loaded.", myObjWidgetNodemcuDocs);
+            //                 myObjWidgetNodemcuDocs.init();
+            //               }
+            //         );
+            //     }
+            // );
         }
     }
 
