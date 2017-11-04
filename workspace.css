@@ -8,15 +8,15 @@
     line-height: 24px;    
 }
 
-#com-chilipeppr-workspace-nodemcu .nodemcu-install {
+#com-chilipeppr-workspace-esp32-lua .nodemcu-install {
     padding:0;
 }
 
-#com-chilipeppr-workspace-nodemcu .col-nopadrt {
+#com-chilipeppr-workspace-esp32-lua .col-nopadrt {
     padding-right:0;    
 }
 
-#com-chilipeppr-workspace-nodemcu .col-nopadleft {
+#com-chilipeppr-workspace-esp32-lua .col-nopadleft {
     padding-left:0;    
 }
 
