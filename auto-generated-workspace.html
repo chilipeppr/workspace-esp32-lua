@@ -300,15 +300,28 @@ v=nil`);
         },
         onClickListAps: function(evt) {
             console.log("got onClickListAps. evt:", evt);
-            this.send(`function listap(t)
-    for ssid,v in pairs(t) do
-        authmode, rssi, bssid, channel = 
-            string.match(v, "(%d),(-?%d+),(%x%x:%x%x:%x%x:%x%x:%x%x:%x%x),(%d+)")
-        print(ssid,authmode,rssi,bssid,channel)
+            this.send(`--register callback
+wifi.sta.on("got_ip", function(ev, info)
+  print("NodeMCU IP config:", info.ip, "netmask", info.netmask, "gw", info.gw)
+end)
+
+-- set as station
+wifi.mode(1)
+-- start wifi
+wifi.start()
+
+-- Scan and print all found APs, including hidden ones
+wifi.sta.scan({ hidden = 1 }, function(err,arr)
+  if err then
+    print ("Scan failed:", err)
+  else
+    print(string.format("%-26s","SSID"),"Channel BSSID              RSSI Auth Bandwidth")
+    for i,ap in ipairs(arr) do
+      print(string.format("%-32s",ap.ssid),ap.channel,ap.bssid,ap.rssi,ap.auth,ap.bandwidth)
     end
-end
-      
-wifi.sta.getap(listap)`);
+    print("-- Total APs: ", #arr)
+  end
+end)`);
         },
 
         sendCtr: 0,
