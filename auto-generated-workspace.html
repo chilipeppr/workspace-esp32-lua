@@ -178,6 +178,8 @@ You can buy the esp32 on ebay.com or aliexpress.com.`,
             this.loadDocsWidget();
             
             this.addBillboardToWorkspaceMenu();
+            
+            this.loadCayennWidget();
 
         },
         /**
@@ -609,6 +611,52 @@ end)`);
             //         );
             //     }
             // );
+        },
+        loadCayennWidget: function() {
+            
+            // Cayenn Widget
+            chilipeppr.load(
+              "#com-chilipeppr-widget-cayenn-instance",
+              "http://raw.githubusercontent.com/chilipeppr/widget-cayenn/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetCayenn
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-cayenn"], // the id you gave your widget
+                  function(myObjWidgetCayenn) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / Cayenn just got loaded.", myObjWidgetCayenn);
+                    myObjWidgetCayenn.init();
+                    
+                    // this widget has a lot of modals that pop up whenever, so we need to make sure the parent div is
+                    // not hidden. instead we'll hide the exact widget because the modals are outside the div of the widget
+                    $('#com-chilipeppr-ws-cayenn').removeClass("hidden");
+                    
+                    /*
+                    var btn = $('#com-chilipeppr-ws-menu .cayenn-button');
+                    var div = $('#com-chilipeppr-widget-cayenn');
+                    div.addClass("hidden");
+                    btn.click(function() {
+                        if (div.hasClass("hidden")) {
+                            // show widget
+                            div.removeClass("hidden");
+                            btn.addClass("active");
+                        } else {
+                            // hide widget
+                            div.addClass("hidden");
+                            btn.removeClass("active");
+                        }
+                        setTimeout(function() {
+                            $(window).trigger('resize');
+                        }, 200);
+                    });
+                    */
+                    
+                  }
+                );
+              }
+            );
+
         }
     }
 
@@ -713,10 +761,11 @@ end)`);
                     </div>
                     
                     <div id="com-chilipeppr-widget-xbm-instance">
-                        <!--Sample code goes here-->
                     </div>
                     
-
+                    <div id="com-chilipeppr-widget-cayenn-instance">
+                    </div>
+                    
                 </div>
 
             </div>
