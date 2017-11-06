@@ -72,6 +72,7 @@ You can buy the esp32 on ebay.com or aliexpress.com.`,
             });
 
             this.loadLuaEditor();
+            this.loadXbmUploader();
 
             //this.loadFlashMsg();
             setTimeout(this.loadWorkspaceMenu.bind(this), 100);
@@ -395,6 +396,25 @@ end)`);
                     });
                 }
             );
+        },
+        loadXbmUploader: function() {
+        
+            chilipeppr.load(
+              "#com-chilipeppr-widget-xbm-instance",
+              "http://raw.githubusercontent.com/chilipeppr/widget-xbm/master/auto-generated-widget.html",
+              function() {
+                // Callback after widget loaded into #myDivWidgetXbm
+                // Now use require.js to get reference to instantiated widget
+                cprequire(
+                  ["inline:com-chilipeppr-widget-xbm"], // the id you gave your widget
+                  function(myObjWidgetXbm) {
+                    // Callback that is passed reference to the newly loaded widget
+                    console.log("Widget / XBM just got loaded.", myObjWidgetXbm);
+                    myObjWidgetXbm.init();
+                  }
+                );
+              }
+            );    
         },
         /**
          * Load the widget for the Lua Editor which is based on the Macro widget from
