@@ -626,7 +626,13 @@ end)`);
                   function(myObjWidgetCayenn) {
                     // Callback that is passed reference to the newly loaded widget
                     console.log("Widget / Cayenn just got loaded.", myObjWidgetCayenn);
-                    myObjWidgetCayenn.init();
+                    
+                    var options = {
+                        enableEsp32Script: true // turns on button to let user send starter script to editor for esp32
+                    }
+
+                    // Ask for esp32 script button to be turned on
+                    myObjWidgetCayenn.init(options);
                     
                     // this widget has a lot of modals that pop up whenever, so we need to make sure the parent div is
                     // not hidden. instead we'll hide the exact widget because the modals are outside the div of the widget
