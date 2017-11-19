@@ -184,7 +184,7 @@ file.format()`);
 m = {}
 
 -- Config
-m.pin = 2 -- 2 on DOIT, 16 on Wemos
+m.pins = {ESP32_DOIT = 2, ESP32_TTGO = 13, ESP32_Wemos = 16} -- 2 on DOIT, 13 on TTGO, 16 on Wemos
 m.value = 0
 m.duration = 500
 m.ctr = 0
@@ -196,16 +196,20 @@ function m.toggleLED ()
     m.value = 0
   end
   
-  gpio.write(m.pin, m.value)
+  for key, value in pairs(m.pins) do
+    local pin = value
+    gpio.write(pin, m.value)
+    -- print("Toggled " .. pin)
+  end
   
-  -- m.ctr = m.ctr + 1
-  -- if m.ctr > 10 then
-  --   m.mytimer:unregister()
-  -- end
 end
--- Initialise the pin
-gpio.config( { gpio={m.pin}, dir=gpio.OUT } )
--- tmr.alarm(0, duration, 1, toggleLED)
+
+print("Initializing pins")
+for key, value in pairs(m.pins) do
+  print("Initting LED pin for ESP32 device: ", key, "pin:", value)
+  gpio.config( { gpio={value}, dir=gpio.OUT } )
+end
+
 m.mytimer = tmr.create()
 m.mytimer:alarm(m.duration, tmr.ALARM_AUTO, m.toggleLED)`);
         },
