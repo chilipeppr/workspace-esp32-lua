@@ -51,6 +51,9 @@ You can buy the esp32 on ebay.com or aliexpress.com.`,
 
             // set title of workspace
             document.title = 'ChiliPeppr - ESP32 for Lua Workspace';
+            setTimeout(() => {
+                document.title = 'ChiliPeppr - ESP32 for Lua Workspace';
+            }, 1000);
             
             // now we can load the SPJS widget
             that.loadSpjsWidget(function() {
